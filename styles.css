@@ -1,0 +1,80 @@
+h2 {
+  color: white;
+}
+
+body {
+  background-color: #3f117c;
+  display: flex;
+  justify-content: center;
+}
+
+.main-container {
+  max-width: 65%;
+}
+
+.main-container img {
+  max-width: 100%;
+  max-height: 45%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.tv-container {
+  background-color: white;
+  border-radius: 10px;
+}
+
+.tv-container h2 {
+  color: #3f117c;
+}
+
+h3 {
+  color: #3f117c;
+}
+
+.stars {
+  display: flex;
+  align-items: center;
+  color: aliceblue;
+  max-width: 30%;
+}
+.star:hover {
+  cursor: pointer;
+}
+
+.star.one,
+.star.two,
+.star.three,
+.star.four,
+.star.five {
+  color: gold;
+}
+
+button {
+  border-radius: 30px;
+  min-width: 75px;
+  min-height: 40px;
+  padding: 8px;
+}
+
+input {
+  width: 100%;
+  min-height: 75px;
+  border-radius: 10px;
+  text-indent: 8px;
+}
+
+.review-item {
+  background-color: rgba(5, 5, 63, 0.63);
+  max-width: 100%;
+  border-radius: 10px;
+  min-height: 15%;
+  text-indent: 8px;
+}
+p,
+.rating-stars {
+  color: aliceblue;
+}
+.rating {
+  color: aliceblue;
+}
