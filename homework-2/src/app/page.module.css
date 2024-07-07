@@ -1,0 +1,16 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6rem;
+  min-height: 100vh;
+  background-color: #3f117c;
+}
+
+.main_title {
+  display: flex;
+  justify-content: flex-start;
+  font-size: xx-large;
+  color: aliceblue;
+}
