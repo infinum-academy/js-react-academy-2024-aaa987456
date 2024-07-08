@@ -1,12 +1,21 @@
-let reviews = [] || loadReviews();
+let reviews = [];
 let currentRating = 0;
 const stars = document.querySelectorAll(".star");
+let nextId = 1;
+
+generateId = () => {
+  if (reviews.length === 0) {
+    nextId = 1;
+  }
+  return nextId++;
+};
 
 createReview = () => {
   const reviewText = document.getElementById("review-text").value;
 
   if (reviewText && currentRating) {
     const newReview = {
+      id: generateId(),
       text: reviewText,
       rating: currentRating,
     };
@@ -15,6 +24,7 @@ createReview = () => {
     saveReviews();
     document.getElementById("review-text").value = "";
     starRating(0);
+    starHover(0);
     currentRating = 0;
     updateAverageRating();
   }
@@ -34,7 +44,7 @@ renderReviews = () => {
       <div class="rating"> ${review.rating} /5 </div>
       
       <div class="rating-stars">${"★".repeat(review.rating)}</div>
-      <button class="remove-button">Remove</button>
+      <button class="remove-button" data-id ="${review.id}" >Remove</button>
     `;
     reviewList.appendChild(reviewItem);
   });
@@ -42,9 +52,9 @@ renderReviews = () => {
   const removeButtons = document.querySelectorAll(".remove-button");
   removeButtons.forEach((button) => {
     button.addEventListener("click", (event) => {
-      const reviewItem = event.target.parentNode;
-      const reviewText = reviewItem.querySelector("p").textContent;
-      reviews = reviews.filter((review) => review.text !== reviewText);
+      const reviewId = parseInt(event.target.getAttribute("data-id"));
+
+      reviews = reviews.filter((review) => review.id !== reviewId);
       saveReviews();
       renderReviews();
       updateAverageRating();
@@ -65,34 +75,43 @@ saveReviews = () => {
   localStorage.setItem("reviews", JSON.stringify(reviews));
 };
 
-function remove() {
+function removeStarColor() {
   stars.forEach((star) => {
     star.className = "star";
   });
 }
 
 function starRating(n) {
-  remove();
-  let starsNumb = "";
-  for (let i = 0; i < n; i++) {
-    if (n == 1) starsNumb = "one";
-    else if (n == 2) starsNumb = "two";
-    else if (n == 3) starsNumb = "three";
-    else if (n == 4) starsNumb = "four";
-    else if (n == 5) starsNumb = "five";
-    stars[i].className = "star " + starsNumb;
-  }
+  removeStarColor();
+  stars.forEach((star, i) => {
+    star.className = `star ${i < n ? "selected" : ""}`;
+  });
   currentRating = n;
 }
-updateAverageRating = () => {
-  let sum = 0;
-  reviews.forEach((review) => {
-    sum += review.rating;
+
+function starHover() {
+  stars.forEach((star, index) => {
+    star.addEventListener("mouseover", () => {
+      stars.forEach((s, i) => {
+        s.classList.toggle("hovered", i <= index);
+      });
+    });
   });
-  const averageRating = sum / reviews.length;
-  document.getElementById(
-    "average-rating"
-  ).textContent = `Average Rating: ${averageRating.toFixed(1)}/5`;
+}
+
+updateAverageRating = () => {
+  if (reviews.length === 0) {
+    document.getElementById("average-rating").textContent = "No ratings yet";
+  } else {
+    let sum = 0;
+    reviews.forEach((review) => {
+      sum += review.rating;
+    });
+    const averageRating = sum / reviews.length;
+    document.getElementById(
+      "average-rating"
+    ).textContent = ` ${averageRating.toFixed(1)}/5`;
+  }
 };
 
 reviews = loadReviews();

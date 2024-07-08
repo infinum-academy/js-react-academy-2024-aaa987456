@@ -15,8 +15,7 @@ body {
 .main-container img {
   max-width: 100%;
   max-height: 45%;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  border-radius: 10px 10px 0 0;
 }
 
 .tv-container {
@@ -37,16 +36,11 @@ h3 {
   align-items: center;
   color: aliceblue;
   max-width: 30%;
-}
-.star:hover {
   cursor: pointer;
 }
 
-.star.one,
-.star.two,
-.star.three,
-.star.four,
-.star.five {
+.star.selected,
+.star.hovered {
   color: gold;
 }
 
@@ -71,10 +65,27 @@ input {
   min-height: 15%;
   text-indent: 8px;
 }
-p,
+
 .rating-stars {
   color: aliceblue;
 }
 .rating {
   color: aliceblue;
+}
+
+.title-padding {
+  padding: 15px;
+}
+
+.stars_size {
+  width: 20px;
+}
+
+.title {
+  font-size: x-large;
+  font-weight: bold;
+}
+
+p {
+  color: #3f117c;
 }
