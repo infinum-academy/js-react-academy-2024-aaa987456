@@ -6,14 +6,13 @@ import {
   Card,
   CardBody,
   Button,
-  Icon,
+  Icon
 } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
-import { IReview } from "../shows/ShowReviewSection ";
+import { IReview } from "@/app/typings/reviews";
 
 export interface IReviewItemProps {
   review: IReview;
-
   onDelete: (review: IReview) => void;
 }
 
@@ -32,7 +31,7 @@ export const ReviewItem = ({ review, onDelete }: IReviewItemProps) => {
             <Flex ml="2">
               {Array(review.rating)
                 .fill("")
-                .map((_, index) => (
+                .map((curentStar, index) => (
                   <Icon key={index} as={StarIcon} color="yellow.400" />
                 ))}
             </Flex>
