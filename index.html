@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <title>TV</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="main-container">
+      <div><h2>TV shows APP</h2></div>
+      <div class="tv-container">
+        <img
+          src="assets/brooklyn.jpg"
+          alt="cast of tv show Brooklyn Nine-Nine"
+        />
+        <div class="title-padding">
+          <p class="title">Brookly Nine-Nine</p>
+          <p class="description">
+            Comedy series following the exploits of Det. Jake Peralta and his
+            diverse, lovable colleagues as they police the NYPD 99th Precint
+          </p>
+          <div>
+            <p id="average-rating"></p>
+          </div>
+        </div>
+      </div>
+      <div class="reviews">
+        <h2>Reviews</h2>
+
+        <input type="text" placeholder="Add review" id="review-text" />
+
+        <div class="stars">
+          <h2>Rating</h2>
+          <div class="stars_size"></div>
+          <span onclick="starRating(1)" class="star">★ </span>
+          <span onclick="starRating(2)" class="star">★ </span>
+          <span onclick="starRating(3)" class="star">★ </span>
+          <span onclick="starRating(4)" class="star">★ </span>
+          <span onclick="starRating(5)" class="star">★ </span>
+        </div>
+        <button class="post-button" onclick="createReview()">Post</button>
+      </div>
+      <div class="list-rev" id="review-list"></div>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
