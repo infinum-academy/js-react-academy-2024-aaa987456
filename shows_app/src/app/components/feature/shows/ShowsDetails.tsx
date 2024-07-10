@@ -9,9 +9,9 @@ interface IShowDetailsProps {
 }
 
 export const ShowsDetails = ({ show ,averageRating}: IShowDetailsProps) => {
+  
   const placeholderImage = "https://fakeimg.pl/600x400/7d3838/909090";
 
-  
   
   return (
     <Card width="100%">
