@@ -17,9 +17,11 @@ import { IReviewContent } from "@/app/typings/reviews";
 export interface IReviewFormProps {
   addShowReview: (review: IReviewContent) => void;
 }
+
 export const ReviewForm = ({ addShowReview }: IReviewFormProps) => {
   const [rating, setRating] = useState<number>(0);
   const [comment, setComment] = useState<string>("");
+ 
 
   const setRatingchange = (newRating: number) => {
     setRating(newRating);
@@ -30,8 +32,16 @@ export const ReviewForm = ({ addShowReview }: IReviewFormProps) => {
     addShowReview({ rating, comment });
     setRating(0);
     setComment("");
+    console.log(comment);
   };
 
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    
+    setComment( e.target.value);
+    console.log('blurred');
+    
+    
+  };
   return (
     <Box
       backgroundColor="brand.100"
@@ -49,21 +59,24 @@ export const ReviewForm = ({ addShowReview }: IReviewFormProps) => {
             <Input
               backgroundColor="white"
               type="text"
-              value={comment}
-              onChange={(e) => setComment(e.target.value)}
+              // onChange={ 
+              //   (e) =>  
+              //   setComment(e.target.value)} 
+              onBlur={handleBlur}
               placeholder="Add review"
+              
             />
           </FormControl>
 
           <FormControl>
-            <Box>
+            
               <Flex alignItems="center" justifyContent="flex-start">
                 <Text margin="3" color="white">
                   Rating
                 </Text>
                 <StarRating rating={rating} onChange={setRatingchange} />
               </Flex>
-            </Box>
+            
           </FormControl>
 
           <Button

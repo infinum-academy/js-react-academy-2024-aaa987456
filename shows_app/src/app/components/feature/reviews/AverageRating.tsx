@@ -1,6 +1,10 @@
 import {  Text } from "@chakra-ui/react";
 
-export const AverageRatingDisplay = ({ averageRating }: { averageRating: number }) => {
+interface IAverageRatingDisplayProps{
+  averageRating:number
+}
+
+export const AverageRatingDisplay = ({ averageRating }:IAverageRatingDisplayProps) => {
     return (
       <Text color="#3f117c" fontSize="xl">
         {averageRating
