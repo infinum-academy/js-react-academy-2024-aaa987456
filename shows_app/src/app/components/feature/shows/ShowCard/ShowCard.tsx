@@ -1,13 +1,27 @@
-import { Ishows } from "@/app/typings/shows";
-import { ShowsComponent } from "../ShowsComponent/ShowsComponent"
+import { IShows } from "@/app/typings/shows"
+import { StarIcon } from "@chakra-ui/icons"
+import { Card ,CardBody,Image,Text,Box, Icon} from "@chakra-ui/react"
+import NextLink from "next/link"
 
-const mockedShow: Ishows = {
-    title: "Brooklyn Nine-Nine",
-    description: "Comedy series following the exploits of Det. Jake Peralta and his diverse, lovable colleagues as they police the NYPD 99th Precinct.",
-    image_url: "/assets/brooklyn.jpg",
-    averageRating: 0
-  };
+export interface IShowCard{
+   show:IShows
+   
+}
+export const ShowCard =({show}:IShowCard)=>{
 
-export const ShowCard =()=>{
-    return <ShowsComponent show={mockedShow}/>
+    return(
+        <Box>
+            
+        <Card  as={NextLink} href={`/all-shows/${show.id}`}>
+          <Image maxHeight ="60%" src={show.image_url} alt={show.title} />
+          <CardBody>
+            <Text color="#3f117c" fontWeight="bold">{show.title}</Text>
+            <Text><Icon as={StarIcon} color="#3f117c"/> {show.average_rating}/5</Text>
+          </CardBody>
+        </Card>
+       
+      </Box>
+
+    )
+    
 }

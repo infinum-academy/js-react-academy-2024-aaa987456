@@ -1,12 +1,15 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import { Flex } from "@chakra-ui/react";
 import { ShowsDetails } from "../ShowsDetails";
 import { ShowReviewSection } from "../ShowReviewSection/ShowReviewSection ";
-import { Ishows } from "@/app/typings/shows";
-import { IReview, IReviewContent } from "@/app/typings/reviews";
+import { IShows } from "../../../../typings/shows";
+import { IReview, IReviewContent } from "../../../../typings/reviews";
+import { useParams } from "next/navigation";
 
-interface IShowsComponentProps {
-  show: Ishows;
+export interface IShowsComponentProps {
+  show: IShows;
 }
 
 const saveToLocalStorage = (reviews: Array<IReview>) => {
@@ -28,11 +31,11 @@ const calculateAverageRating = (reviews: Array<IReview>) => {
   return showsAverageRating;
 };
 
-
-
 export const ShowsComponent = ({ show }: IShowsComponentProps) => {
   const [reviews, setReviews] = useState<Array<IReview>>([]);
   const [averageRating, setAverageRating] = useState<number>(0);
+  const params = useParams();
+  console.log(params);
 
   useEffect(() => {
     const savedReviews = loadFromLocalStorage();
@@ -52,18 +55,20 @@ export const ShowsComponent = ({ show }: IShowsComponentProps) => {
     const newReview: IReview = {
       email: "",
       avatar: "https://via.placeholder.com/150",
-      ...review,
+      ...review
     };
     setReviews([...reviews, newReview]);
   };
 
   const handleDeleteReview = (reviewToRemove: IReview) => {
-    const updatedReviews = reviews.filter((review) => review !== reviewToRemove);
+    const updatedReviews = reviews.filter(
+      (review) => review !== reviewToRemove
+    );
     setReviews(updatedReviews);
   };
 
   return (
-    <Flex direction="column" width="80%">
+    <Flex direction="column">
       <ShowsDetails show={show} averageRating={averageRating} />
       <ShowReviewSection
         reviews={reviews}
