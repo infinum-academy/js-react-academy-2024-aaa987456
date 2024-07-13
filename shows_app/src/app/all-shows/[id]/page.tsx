@@ -1,5 +1,5 @@
-import { SelectedShow } from "../../components/feature/shows/SelectedShow/SelectedShow";
+import { ShowsComponentContainer } from "../../components/feature/shows/ShowsComponentContainer/ShowsComponentContainer";
 
 export default function ShowSelectedId() {
-  return <SelectedShow />;
+  return <ShowsComponentContainer />;
 }

@@ -1,6 +1,6 @@
-import { IShows } from "../../../typings/shows";
+import { IShows } from "../../../../typings/shows";
 import { Card, CardBody, Image, Stack, Heading, Text } from "@chakra-ui/react";
-import { AverageRatingDisplay } from "../reviews/AverageRating";
+import { AverageRatingDisplay } from "../../reviews/AverageRating";
 
 interface IShowDetailsProps {
   show: IShows;

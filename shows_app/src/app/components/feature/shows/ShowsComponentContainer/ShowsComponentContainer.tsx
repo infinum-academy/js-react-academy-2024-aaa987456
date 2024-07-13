@@ -6,7 +6,7 @@ import { useParams } from "next/navigation";
 import useSWR from "swr";
 import { ShowsComponent } from "../ShowsComponent/ShowsComponent";
 
-export const SelectedShow = () => {
+export const ShowsComponentContainer = () => {
   const params = useParams();
 
   console.log(params);
@@ -21,20 +21,16 @@ export const SelectedShow = () => {
         <Text>Failed to load shows</Text>
       </Box>
     );
-  if (isLoading)
+  if (isLoading || !data)
     return (
       <Box>
         <Spinner />
       </Box>
     );
 
-  return data ? (
+  return (
     <Flex direction="column" maxWidth="75%">
       <ShowsComponent show={data} />
     </Flex>
-  ) : (
-    <Box>
-      <Text>Show not found</Text>
-    </Box>
   );
 };

@@ -9,7 +9,7 @@ import {
   Icon
 } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
-import { IReview } from "@/app/typings/reviews";
+import { IReview } from "../../../../typings/reviews";
 
 export interface IReviewItemProps {
   review: IReview;
