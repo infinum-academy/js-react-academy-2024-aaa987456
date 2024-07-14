@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Providers } from "./providers";
 import { SideBarNavigation } from "./components/shared/SideBar/SidebarNavigation";
+import { Flex } from "@chakra-ui/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +21,9 @@ export default function RootLayout({
       <body className={inter.className} style={{ backgroundColor: "#3f117c" }}>
         <Providers>
           <SideBarNavigation />
-          {children}
+          <Flex flex="1" justify="flex-end" margin="20px ">
+            {children}
+          </Flex>
         </Providers>
       </body>
     </html>

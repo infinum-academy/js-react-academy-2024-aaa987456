@@ -29,7 +29,7 @@ export const ShowsComponentContainer = () => {
     );
 
   return (
-    <Flex direction="column" maxWidth="75%">
+    <Flex>
       <ShowsComponent show={data} />
     </Flex>
   );

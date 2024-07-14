@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Flex } from "@chakra-ui/react";
-import { ShowsDetails } from "../ShowsDetails/ShowsDetails";
+import { ShowDetails } from "../ShowDetails/ShowDetails";
 import { ShowReviewSection } from "../ShowReviewSection/ShowReviewSection ";
 import { IShows } from "../../../../typings/shows";
 import { IReview, IReviewContent } from "../../../../typings/reviews";
@@ -11,16 +11,15 @@ export interface IShowsComponentProps {
   show: IShows;
 }
 
-const saveToLocalStorage = (reviews: Array<IReview>) => {
-  localStorage.setItem("reviews", JSON.stringify(reviews));
+const saveToLocalStorage = (showId: string, reviews: Array<IReview>) => {
+  const allReviews = JSON.parse(localStorage.getItem("reviews") || "{}");
+  allReviews[showId] = reviews;
+  localStorage.setItem("reviews", JSON.stringify(allReviews));
 };
 
-const loadFromLocalStorage = () => {
-  const reviewsString = localStorage.getItem("reviews");
-  if (reviewsString) {
-    return JSON.parse(reviewsString);
-  }
-  return [];
+const loadFromLocalStorage = (showId: string) => {
+  const allReviews = JSON.parse(localStorage.getItem("reviews") || "{}");
+  return allReviews[showId] || [];
 };
 
 const calculateAverageRating = (reviews: Array<IReview>) => {
@@ -32,12 +31,12 @@ const calculateAverageRating = (reviews: Array<IReview>) => {
 
 export const ShowsComponent = ({ show }: IShowsComponentProps) => {
   const [reviews, setReviews] = useState<Array<IReview>>(
-    loadFromLocalStorage()
+    loadFromLocalStorage(show.id)
   );
 
   useEffect(() => {
-    saveToLocalStorage(reviews);
-  }, [reviews]);
+    saveToLocalStorage(show.id, reviews);
+  }, [reviews, show.id]);
 
   const handleAddReview = (review: IReviewContent) => {
     if (!review.rating || !review.comment) {
@@ -46,7 +45,8 @@ export const ShowsComponent = ({ show }: IShowsComponentProps) => {
     const newReview: IReview = {
       email: "",
       avatar: "https://via.placeholder.com/150",
-      ...review
+      ...review,
+      id_of_show: ""
     };
     setReviews([...reviews, newReview]);
   };
@@ -62,7 +62,7 @@ export const ShowsComponent = ({ show }: IShowsComponentProps) => {
 
   return (
     <Flex direction="column">
-      <ShowsDetails show={show} averageRating={averageRating} />
+      <ShowDetails show={show} averageRating={averageRating} />
       <ShowReviewSection
         reviews={reviews}
         onAddReview={handleAddReview}
