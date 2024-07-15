@@ -5,14 +5,16 @@ import { Box, Text, Spinner, Flex } from "@chakra-ui/react";
 import { useParams } from "next/navigation";
 import useSWR from "swr";
 import { ShowsComponent } from "../ShowsComponent/ShowsComponent";
+import { fetcher } from "@/fetchers/fetchers";
+import { swrKeys } from "@/fetchers/swrKeys";
+import { IShows } from "@/app/typings/shows";
 
 export const ShowsComponentContainer = () => {
   const params = useParams();
 
-  console.log(params);
-
-  const { data, error, isLoading } = useSWR(`/api/shows/${params.id}`, () =>
-    getAllShow(params.id as string)
+  const { data, error, isLoading } = useSWR<IShows>(
+    swrKeys.selected(params.id as string),
+    fetcher
   );
 
   if (error)

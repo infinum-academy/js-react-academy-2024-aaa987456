@@ -10,3 +10,9 @@ export interface ILoginArgs {
 }
 
 export type MutatorArgs = IRegisterArgs | ILoginArgs;
+
+export interface ILoginResponse {
+  headers: any;
+  json(): unknown;
+  accessToken: string;
+}

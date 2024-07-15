@@ -16,7 +16,7 @@ interface IShowDetailsProps {
 }
 
 export const ShowDetails = ({ show, averageRating }: IShowDetailsProps) => {
-  const placeholderImage = "https://fakeimg.pl/600x400/7d3838/909090";
+  const placeholderImage = "https://fakeimg.pl/1000x800/7d3838/909090";
 
   return (
     <Card maxHeight="800px">

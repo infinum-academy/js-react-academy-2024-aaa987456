@@ -46,7 +46,7 @@ export const ShowsComponent = ({ show }: IShowsComponentProps) => {
       email: "",
       avatar: "https://via.placeholder.com/150",
       ...review,
-      id_of_show: ""
+      id_of_show: show.id
     };
     setReviews([...reviews, newReview]);
   };

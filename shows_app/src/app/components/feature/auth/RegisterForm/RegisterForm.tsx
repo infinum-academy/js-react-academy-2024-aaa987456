@@ -21,13 +21,14 @@ import {
 import { ErrorMessage } from "@hookform/error-message";
 import { useForm } from "react-hook-form";
 import useSWRMutation from "swr/mutation";
+import { PasswordInput } from "../PasswordInput/PasswordInput";
 
 export const RegisterForm = () => {
   const {
     register,
     handleSubmit,
     watch,
-    formState: { errors }
+    formState: { errors, isSubmitting }
   } = useForm<IRegisterArgs>({});
   const { trigger } = useSWRMutation(swrKeys.register, mutator);
 
@@ -55,26 +56,12 @@ export const RegisterForm = () => {
             placeholder="Email"
             required
             type="email"
+            disabled={isSubmitting}
           />
         </InputGroup>
       </FormControl>
-      <FormControl isRequired={true}>
-        <InputGroup>
-          <InputLeftElement pointerEvents="none">
-            <LockIcon color="gray.300" />
-          </InputLeftElement>
-          <Input
-            {...register("password", {
-              minLength: {
-                value: 8,
-                message: "At least 8 characters "
-              }
-            })}
-            placeholder="Password"
-            required
-            type="password"
-          />
-        </InputGroup>
+      <FormControl isRequired>
+        <PasswordInput register={register} isSubmitting={isSubmitting} />
         <ErrorMessage
           errors={errors}
           name="password"
@@ -91,6 +78,7 @@ export const RegisterForm = () => {
           placeholder="Confirm password"
           required
           type="password"
+          disabled={isSubmitting}
         />
         <ErrorMessage
           errors={errors}

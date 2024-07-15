@@ -16,18 +16,27 @@ import {
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import useSWRMutation from "swr/mutation";
+import { useRouter } from "next/navigation";
+import { PasswordInput } from "../PasswordInput/PasswordInput";
 
 export const LoginForm = () => {
-  const { register, handleSubmit } = useForm<ILoginArgs>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting }
+  } = useForm<ILoginArgs>();
   const { trigger } = useSWRMutation(swrKeys.login, mutator);
+  const router = useRouter();
 
   const onSubmit = async (data: ILoginArgs) => {
-    console.log(data);
-    const response: any = await trigger(data);
-    const token = response.accessToken;
-    localStorage.setItem("authToken", token);
+    try {
+      console.log(data);
+      await trigger(data);
+      router.push("/all-shows");
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
   };
-
   return (
     <chakra.form
       display="flex"
@@ -43,15 +52,11 @@ export const LoginForm = () => {
           placeholder="Email"
           required
           type="email"
+          disabled={isSubmitting}
         />
       </FormControl>
-      <FormControl isRequired={true}>
-        <Input
-          {...register("password")}
-          placeholder="Password"
-          required
-          type="password"
-        />
+      <FormControl isRequired>
+        <PasswordInput register={register} isSubmitting={isSubmitting} />
       </FormControl>
       <Flex gap={2}>
         <Text>Don have an account?</Text>
