@@ -1,8 +1,10 @@
-import { TopRatedShows } from "../../components/feature/shows/ShowsTop/ShowsTop"
-
+import RootLayout from "@/app/layout";
+import { TopRatedShows } from "../../components/feature/shows/ShowsTop/ShowsTop";
 
 export default function AllShows() {
-    return(
-        <TopRatedShows/>
-    )
+  return (
+    <RootLayout showSidebar={true}>
+      <TopRatedShows />
+    </RootLayout>
+  );
 }

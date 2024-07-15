@@ -17,15 +17,30 @@
       "static/chunks/main-app.js",
       "static/chunks/app/all-shows/page.js"
     ],
-    "/all-shows/top-rated/page": [
+    "/register/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/all-shows/top-rated/page.js"
+      "static/chunks/app/register/page.js"
     ],
     "/all-shows/[id]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/all-shows/[id]/page.js"
+    ],
+    "/all-shows/top-rated/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/all-shows/top-rated/page.js"
+    ],
+    "/login/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/login/page.js"
+    ],
+    "/_not-found/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/_not-found/page.js"
     ]
   }
 }
