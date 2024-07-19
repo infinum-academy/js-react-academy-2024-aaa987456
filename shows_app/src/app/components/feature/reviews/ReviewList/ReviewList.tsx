@@ -1,7 +1,7 @@
 import React from "react";
 import { Box } from "@chakra-ui/react";
 import { ReviewItem } from "../ReviewItem/ReviewItem";
-import { IReview } from "@/app/typings/reviews";
+import { IReview } from "../../../../typings/reviews";
 
 interface IReviewListProps {
   reviews: Array<IReview>;

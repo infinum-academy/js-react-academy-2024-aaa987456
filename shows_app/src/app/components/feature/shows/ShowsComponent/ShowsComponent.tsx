@@ -1,24 +1,25 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import { Flex } from "@chakra-ui/react";
-import { ShowsDetails } from "../ShowsDetails";
+import { ShowDetails } from "../ShowDetails/ShowDetails";
 import { ShowReviewSection } from "../ShowReviewSection/ShowReviewSection ";
-import { Ishows } from "@/app/typings/shows";
-import { IReview, IReviewContent } from "@/app/typings/reviews";
+import { IShows } from "../../../../typings/shows";
+import { IReview, IReviewContent } from "../../../../typings/reviews";
 
-interface IShowsComponentProps {
-  show: Ishows;
+export interface IShowsComponentProps {
+  show: IShows;
 }
 
-const saveToLocalStorage = (reviews: Array<IReview>) => {
-  localStorage.setItem("reviews", JSON.stringify(reviews));
+const saveToLocalStorage = (showId: string, reviews: Array<IReview>) => {
+  const allReviews = JSON.parse(localStorage.getItem("reviews") || "{}");
+  allReviews[showId] = reviews;
+  localStorage.setItem("reviews", JSON.stringify(allReviews));
 };
 
-const loadFromLocalStorage = () => {
-  const reviewsString = localStorage.getItem("reviews");
-  if (reviewsString) {
-    return JSON.parse(reviewsString);
-  }
-  return [];
+const loadFromLocalStorage = (showId: string) => {
+  const allReviews = JSON.parse(localStorage.getItem("reviews") || "{}");
+  return allReviews[showId] || [];
 };
 
 const calculateAverageRating = (reviews: Array<IReview>) => {
@@ -28,22 +29,14 @@ const calculateAverageRating = (reviews: Array<IReview>) => {
   return showsAverageRating;
 };
 
-
-
 export const ShowsComponent = ({ show }: IShowsComponentProps) => {
-  const [reviews, setReviews] = useState<Array<IReview>>([]);
-  const [averageRating, setAverageRating] = useState<number>(0);
+  const [reviews, setReviews] = useState<Array<IReview>>(
+    loadFromLocalStorage(show.id)
+  );
 
   useEffect(() => {
-    const savedReviews = loadFromLocalStorage();
-    setReviews(savedReviews);
-  }, []);
-
-  useEffect(() => {
-    saveToLocalStorage(reviews);
-    const avgRating = calculateAverageRating(reviews);
-    setAverageRating(avgRating);
-  }, [reviews]);
+    saveToLocalStorage(show.id, reviews);
+  }, [reviews, show.id]);
 
   const handleAddReview = (review: IReviewContent) => {
     if (!review.rating || !review.comment) {
@@ -53,18 +46,23 @@ export const ShowsComponent = ({ show }: IShowsComponentProps) => {
       email: "",
       avatar: "https://via.placeholder.com/150",
       ...review,
+      id_of_show: ""
     };
     setReviews([...reviews, newReview]);
   };
 
   const handleDeleteReview = (reviewToRemove: IReview) => {
-    const updatedReviews = reviews.filter((review) => review !== reviewToRemove);
+    const updatedReviews = reviews.filter(
+      (review) => review !== reviewToRemove
+    );
     setReviews(updatedReviews);
   };
 
+  const averageRating = calculateAverageRating(reviews);
+
   return (
-    <Flex direction="column" width="80%">
-      <ShowsDetails show={show} averageRating={averageRating} />
+    <Flex direction="column">
+      <ShowDetails show={show} averageRating={averageRating} />
       <ShowReviewSection
         reviews={reviews}
         onAddReview={handleAddReview}

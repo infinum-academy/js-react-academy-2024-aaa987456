@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 
 import { StarRating } from "../../reviews/StarRating/StarRating";
-import { IReviewContent } from "@/app/typings/reviews";
+import { IReviewContent } from "../../../../typings/reviews";
 
 
 export interface IReviewFormProps {
