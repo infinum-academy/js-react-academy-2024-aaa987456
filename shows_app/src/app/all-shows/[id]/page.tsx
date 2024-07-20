@@ -1,7 +1,7 @@
-import { Flex } from "@chakra-ui/react";
-import { ShowsComponentContainer } from "../../components/feature/shows/ShowsComponentContainer/ShowsComponentContainer";
+import { Box, Flex, Text, Spinner } from "@chakra-ui/react";
 import RootLayout from "@/app/layout";
 import { AuthRedirect } from "@/app/components/feature/auth/AuthRedirect/AuthRedirect";
+import { ShowsComponent } from "@/app/components/feature/shows/ShowsComponent/ShowsComponent";
 
 export default function ShowSelectedId() {
   return (
@@ -9,7 +9,7 @@ export default function ShowSelectedId() {
       <AuthRedirect to="/login" condition="loggedOut" />
 
       <Flex maxWidth="70%" direction="column">
-        <ShowsComponentContainer />
+        <ShowsComponent />
       </Flex>
     </RootLayout>
   );

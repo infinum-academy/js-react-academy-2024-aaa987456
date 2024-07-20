@@ -13,7 +13,7 @@ export interface IShowReviewSectionProps {
 export const ShowReviewSection = ({
   reviews,
   onAddReview,
-  onDeleteReview,
+  onDeleteReview
 }: IShowReviewSectionProps) => {
   return (
     <Box width="100%">

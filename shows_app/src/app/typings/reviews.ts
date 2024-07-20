@@ -9,5 +9,5 @@ export interface IReview {
   rating: number;
   comment: string;
   averageRating?: number;
-  id_of_show: string;
+  show_id: string;
 }

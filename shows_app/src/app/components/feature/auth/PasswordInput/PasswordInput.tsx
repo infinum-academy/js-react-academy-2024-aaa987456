@@ -1,5 +1,3 @@
-"use client";
-
 import { ILoginArgs, IRegisterArgs } from "@/app/typings/auths";
 import { LockIcon } from "@chakra-ui/icons";
 import {

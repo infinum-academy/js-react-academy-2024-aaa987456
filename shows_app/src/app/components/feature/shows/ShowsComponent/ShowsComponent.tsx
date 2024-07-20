@@ -1,15 +1,15 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Flex } from "@chakra-ui/react";
+import { Box, Flex, Spinner, Text } from "@chakra-ui/react";
 import { ShowDetails } from "../ShowDetails/ShowDetails";
 import { ShowReviewSection } from "../ShowReviewSection/ShowReviewSection ";
 import { IShows } from "../../../../typings/shows";
 import { IReview, IReviewContent } from "../../../../typings/reviews";
-
-export interface IShowsComponentProps {
-  show: IShows;
-}
+import { fetcher } from "@/fetchers/fetchers";
+import { swrKeys } from "@/fetchers/swrKeys";
+import useSWR from "swr";
+import { useParams } from "next/navigation";
 
 const saveToLocalStorage = (showId: string, reviews: Array<IReview>) => {
   const allReviews = JSON.parse(localStorage.getItem("reviews") || "{}");
@@ -18,25 +18,61 @@ const saveToLocalStorage = (showId: string, reviews: Array<IReview>) => {
 };
 
 const loadFromLocalStorage = (showId: string) => {
-  const allReviews = JSON.parse(localStorage.getItem("reviews") || "{}");
-  return allReviews[showId] || [];
+  if (typeof window !== "undefined" && window.localStorage) {
+    const allReviews = JSON.parse(localStorage.getItem("reviews") || "{}");
+    return allReviews[showId] || [];
+  }
+  return [];
 };
 
-const calculateAverageRating = (reviews: Array<IReview>) => {
-  if (reviews.length === 0) return 0;
-  const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
-  const showsAverageRating = totalRating / reviews.length;
-  return showsAverageRating;
-};
+const calculateNewAverageRating = (
+  initialAverageRating: number,
+  initialReviewCount: number,
+  reviews: Array<IReview>
+) => {
+  const totalInitialRating = initialAverageRating * initialReviewCount;
+  const totalNewRating = reviews.reduce(
+    (sum, review) => sum + review.rating,
+    0
+  );
+  const totalReviews = initialReviewCount + reviews.length;
 
-export const ShowsComponent = ({ show }: IShowsComponentProps) => {
+  if (totalReviews === 0) return 0;
+
+  return (totalInitialRating + totalNewRating) / totalReviews;
+};
+export const ShowsComponent = () => {
+  const params = useParams();
+  const id = params?.id as string;
+
   const [reviews, setReviews] = useState<Array<IReview>>(
-    loadFromLocalStorage(show.id)
+    loadFromLocalStorage(id)
   );
 
   useEffect(() => {
-    saveToLocalStorage(show.id, reviews);
-  }, [reviews, show.id]);
+    saveToLocalStorage(id, reviews);
+  }, [reviews, id]);
+
+  const { data, error, isLoading } = useSWR<{ show: IShows }>(
+    id ? swrKeys.selected(id) : null,
+    fetcher
+  );
+
+  if (error) {
+    return (
+      <Box>
+        <Text>Failed to load shows</Text>
+      </Box>
+    );
+  }
+
+  if (isLoading || !data) {
+    return (
+      <Box>
+        <Spinner />
+      </Box>
+    );
+  }
 
   const handleAddReview = (review: IReviewContent) => {
     if (!review.rating || !review.comment) {
@@ -46,7 +82,7 @@ export const ShowsComponent = ({ show }: IShowsComponentProps) => {
       email: "",
       avatar: "https://via.placeholder.com/150",
       ...review,
-      id_of_show: show.id
+      show_id: id
     };
     setReviews([...reviews, newReview]);
   };
@@ -58,11 +94,15 @@ export const ShowsComponent = ({ show }: IShowsComponentProps) => {
     setReviews(updatedReviews);
   };
 
-  const averageRating = calculateAverageRating(reviews);
+  const averageRating = calculateNewAverageRating(
+    data.show.average_rating,
+    data.show.no_of_reviews,
+    reviews
+  );
 
   return (
     <Flex direction="column">
-      <ShowDetails show={show} averageRating={averageRating} />
+      <ShowDetails show={data.show} averageRating={averageRating} />
       <ShowReviewSection
         reviews={reviews}
         onAddReview={handleAddReview}

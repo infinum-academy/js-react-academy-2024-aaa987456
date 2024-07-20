@@ -1,3 +1,5 @@
+"use client";
+
 import { IShows } from "../../../../typings/shows";
 import {
   Card,
@@ -6,7 +8,9 @@ import {
   Stack,
   Heading,
   Text,
-  Flex
+  Flex,
+  Box,
+  Spinner
 } from "@chakra-ui/react";
 import { AverageRatingDisplay } from "../../reviews/AverageRating";
 
@@ -33,6 +37,7 @@ export const ShowDetails = ({ show, averageRating }: IShowDetailsProps) => {
             {show.title}
           </Heading>
           <Text color="#3f117c">{show.description}</Text>
+          console.log(show.description);
           <AverageRatingDisplay averageRating={averageRating} />
         </Stack>
       </CardBody>
