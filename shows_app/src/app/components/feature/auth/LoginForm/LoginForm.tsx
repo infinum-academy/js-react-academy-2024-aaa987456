@@ -10,6 +10,7 @@ import {
   FormControl,
   FormLabel,
   Heading,
+  Img,
   Input,
   Link,
   Text
@@ -42,10 +43,11 @@ export const LoginForm = () => {
       display="flex"
       flexDirection="column"
       alignItems="center"
-      gap={10}
+      gap={30}
       onSubmit={handleSubmit(onSubmit)}
     >
-      <Heading as="h4">TV SHOW APP</Heading>
+      <Img src="assets/Logo.png"></Img>
+
       <FormControl isRequired={true}>
         <Input
           {...register("email")}

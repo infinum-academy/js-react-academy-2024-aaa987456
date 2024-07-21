@@ -5,6 +5,7 @@ import {
   Button,
   Divider,
   Flex,
+  Img,
   Spacer,
   Stack,
   Text
@@ -34,6 +35,7 @@ export const SideBarNavigation = () => {
       flexDirection="column"
     >
       <Stack spacing="4" flexGrow={1}>
+        <Img src="assets/Logo.png" maxWidth="200px"></Img>
         <NextLink href="/all-shows">
           <Text fontSize="lg">All shows</Text>
         </NextLink>

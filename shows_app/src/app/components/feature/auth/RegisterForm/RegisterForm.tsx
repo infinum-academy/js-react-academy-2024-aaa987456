@@ -16,7 +16,8 @@ import {
   Text,
   Link,
   InputLeftElement,
-  InputGroup
+  InputGroup,
+  Img
 } from "@chakra-ui/react";
 import { ErrorMessage } from "@hookform/error-message";
 import { useForm } from "react-hook-form";
@@ -46,7 +47,8 @@ export const RegisterForm = () => {
       gap={10}
       onSubmit={handleSubmit(onSubmit)}
     >
-      <Heading as="h4">TV SHOW APP</Heading>
+      <Img src="assets/Logo.png"></Img>
+
       <FormControl isRequired={true}>
         <InputGroup>
           <InputLeftElement pointerEvents="none">

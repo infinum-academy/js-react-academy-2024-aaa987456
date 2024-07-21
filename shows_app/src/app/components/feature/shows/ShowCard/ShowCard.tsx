@@ -18,7 +18,7 @@ export const ShowCard = ({ show }: IShowCard) => {
       />
       <CardBody>
         <Flex direction="column" justifyContent="space-between" height="100%">
-          <Text color="#3f117c" fontWeight="bold" noOfLines={2}>
+          <Text color="bold.100" fontWeight="bold" noOfLines={2}>
             {show.title}
           </Text>
           <Box>
