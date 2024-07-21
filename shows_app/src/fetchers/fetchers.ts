@@ -1,3 +1,5 @@
+import { IReview } from "@/app/typings/reviews";
+
 export async function fetcher<T>(
   input: string | URL | globalThis.Request,
   init?: RequestInit

@@ -10,16 +10,20 @@ import {
 } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
 import { IReview } from "../../../../typings/reviews";
+import useSWRMutation from "swr/mutation";
+import { swrKeys } from "@/fetchers/swrKeys";
+import { mutator } from "@/fetchers/mutators";
 
 export interface IReviewItemProps {
   review: IReview;
-  onDelete: (review: IReview) => void;
+  onDelete: (reviewId: string, userId: string) => void;
 }
 
 export const ReviewItem = ({ review, onDelete }: IReviewItemProps) => {
   const handleDelete = () => {
-    onDelete(review);
+    onDelete(review.id, review.user.id);
   };
+
   return (
     <Card backgroundColor="#5918B0" paddingBottom="8" marginBottom="4">
       <CardBody>

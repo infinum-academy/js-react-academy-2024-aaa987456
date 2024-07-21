@@ -1,4 +1,7 @@
 import { MutatorArgs } from "@/app/typings/auths";
+import { IReview, IReviewContent } from "@/app/typings/reviews";
+import { fetcher } from "./fetchers";
+import { swrKeys } from "./swrKeys";
 
 export async function mutator<T>(
   url: string,
@@ -37,4 +40,64 @@ export async function mutator<T>(
   }
 
   return response.json();
+}
+
+export async function createReviewM(url: string, { arg }: { arg: IReview }) {
+  const auth = {
+    accessToken: localStorage.getItem("authToken") || "",
+    client: localStorage.getItem("client") || "",
+    uid: localStorage.getItem("uid") || "",
+    tokenType: "Bearer"
+  };
+
+  try {
+    const response = await fetcher(url, {
+      method: "POST",
+      body: JSON.stringify(arg),
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "access-token": auth.accessToken,
+        client: auth.client,
+        uid: auth.uid,
+        "token-type": auth.tokenType
+      }
+    });
+
+    return response;
+  } catch (error) {
+    console.error("Error creating :", error);
+    throw error;
+  }
+}
+
+export async function deleteReviewM(
+  url: string,
+  { arg }: { arg: { reviewId: string; userId: string } }
+) {
+  const auth = {
+    accessToken: localStorage.getItem("authToken") || "",
+    client: localStorage.getItem("client") || "",
+    uid: localStorage.getItem("uid") || "",
+    tokenType: "Bearer"
+  };
+
+  try {
+    const response = await fetcher(url, {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        "access-token": auth.accessToken,
+        client: auth.client,
+        uid: auth.uid,
+        "token-type": auth.tokenType
+      },
+      body: JSON.stringify({ reviewId: arg.reviewId, userId: arg.userId })
+    });
+
+    return response;
+  } catch (error) {
+    console.error("Error deleting review:", error);
+    throw error;
+  }
 }

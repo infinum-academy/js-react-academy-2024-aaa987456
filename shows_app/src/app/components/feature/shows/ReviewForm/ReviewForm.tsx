@@ -10,11 +10,11 @@ import {
   Text
 } from "@chakra-ui/react";
 import { StarRating } from "../../reviews/StarRating/StarRating";
-import { IReviewContent } from "../../../../typings/reviews";
+import { IReview, IReviewContent } from "../../../../typings/reviews";
 import { useForm } from "react-hook-form";
 
 export interface IReviewFormProps {
-  addShowReview: (review: IReviewContent) => void;
+  addShowReview: (review: IReview) => void;
 }
 
 export const ReviewForm = ({ addShowReview }: IReviewFormProps) => {
@@ -23,10 +23,10 @@ export const ReviewForm = ({ addShowReview }: IReviewFormProps) => {
     handleSubmit,
     reset,
     formState: { errors, isSubmitting }
-  } = useForm<IReviewContent>();
+  } = useForm<IReview>();
   const [rating, setRating] = useState<number>(0);
 
-  const onSubmit = (data: IReviewContent) => {
+  const onSubmit = (data: IReview) => {
     addShowReview({ ...data, rating });
     reset();
     setRating(0);

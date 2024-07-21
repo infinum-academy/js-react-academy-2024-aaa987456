@@ -9,7 +9,13 @@ describe("ReviewItem", () => {
     avatar: "https://via.placeholder.com/150",
     rating: 2,
     comment: "Not good",
-    id_of_show: "1"
+    id: "1",
+    show_id: "1",
+    user: {
+      id: "2",
+      email: "user@example.com",
+      image_url: " ddf"
+    }
   };
 
   const mockOnDelete = jest.fn();
@@ -49,6 +55,9 @@ describe("ReviewItem", () => {
     deleteButton.click();
     expect(mockOnDelete).toHaveBeenCalled();
     expect(mockOnDelete).toHaveBeenCalledTimes(1);
-    expect(mockOnDelete).toHaveBeenCalledWith(mockReview);
+    expect(mockOnDelete).toHaveBeenCalledWith(
+      mockReview.id,
+      mockReview.user.id
+    );
   });
 });
