@@ -1,7 +1,25 @@
-import { Box, Divider, Flex, Spacer, Stack, Text } from "@chakra-ui/react";
+"use client";
+
+import {
+  Box,
+  Button,
+  Divider,
+  Flex,
+  Spacer,
+  Stack,
+  Text
+} from "@chakra-ui/react";
 import NextLink from "next/link";
+import { useRouter } from "next/navigation";
 
 export const SideBarNavigation = () => {
+  const router = useRouter();
+
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    router.push("/login");
+  };
+
   return (
     <Box
       maxWidth="300px"
@@ -30,7 +48,9 @@ export const SideBarNavigation = () => {
       </Stack>
 
       <Flex justify="center">
-        <Text fontSize="lg">Log Out</Text>
+        <Button onClick={handleLogout}>
+          <Text fontSize="lg">Log Out</Text>
+        </Button>
       </Flex>
     </Box>
   );

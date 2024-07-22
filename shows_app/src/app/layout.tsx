@@ -12,15 +12,17 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children
+  children,
+  showSidebar
 }: Readonly<{
   children: React.ReactNode;
+  showSidebar: boolean;
 }>) {
   return (
     <html lang="en">
       <body className={inter.className} style={{ backgroundColor: "#3f117c" }}>
         <Providers>
-          <SideBarNavigation />
+          {showSidebar && <SideBarNavigation />}
           <Flex flex="1" justify="flex-end" margin="20px ">
             {children}
           </Flex>

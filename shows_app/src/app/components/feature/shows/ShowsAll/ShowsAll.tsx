@@ -4,6 +4,7 @@ import { IShows } from "../../../../typings/shows";
 import { SimpleGrid, Box, Spinner, Text, Flex } from "@chakra-ui/react";
 import { ShowCard } from "../ShowCard/ShowCard";
 import useSWR from "swr";
+import { swrKeys } from "@/fetchers/swrKeys";
 
 interface ShowListProps {
   fetcher: (url: string) => Promise<{ shows: IShows[] }>;

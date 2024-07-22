@@ -1,8 +1,9 @@
 "use client";
 
-import { getTopShows } from "../../../../../fetchers/shows";
 import { ShowsAll } from "../ShowsAll/ShowsAll";
+import { swrKeys } from "@/fetchers/swrKeys";
+import { fetcher } from "@/fetchers/fetchers";
 
 export const TopRatedShows = () => {
-  return <ShowsAll fetcher={getTopShows} url="/api/top-shows" />;
+  return <ShowsAll fetcher={fetcher} url={swrKeys.top} />;
 };
