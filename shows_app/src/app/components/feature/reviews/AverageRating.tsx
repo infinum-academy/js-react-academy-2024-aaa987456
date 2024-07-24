@@ -9,7 +9,7 @@ export const AverageRatingDisplay = ({
   averageRating
 }: IAverageRatingDisplayProps) => {
   return (
-    <Text color="#3f117c" fontSize="xl">
+    <Text color="brand.200" fontSize="xl">
       {averageRating ? `${averageRating.toFixed(2)}/5` : "No ratings"}
     </Text>
   );

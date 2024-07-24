@@ -4,7 +4,7 @@ import { FormButton } from "@/app/components/shared/Button";
 import { IRegisterArgs } from "@/app/typings/auths";
 import { mutator } from "@/fetchers/mutators";
 import { swrKeys } from "@/fetchers/swrKeys";
-import { AtSignIcon, LockIcon } from "@chakra-ui/icons";
+import { AtSignIcon, EmailIcon, LockIcon } from "@chakra-ui/icons";
 import {
   chakra,
   Flex,
@@ -49,22 +49,26 @@ export const RegisterForm = () => {
       display="flex"
       flexDirection="column"
       alignItems="center"
-      gap={10}
+      gap={30}
       onSubmit={handleSubmit(onSubmit)}
+      backgroundColor="brand.200"
+      borderRadius="20px"
+      padding="30px"
     >
       <Img src="assets/Logo.png"></Img>
 
-      <FormControl isRequired={true}>
+      <FormControl variant="floating" isRequired={true}>
+        <FormLabel backgroundColor="brand.300">Email</FormLabel>
         <InputGroup>
           <InputLeftElement pointerEvents="none">
-            <AtSignIcon color="gray.300" />
+            <EmailIcon color="gray.300" />
           </InputLeftElement>
           <Input
             {...register("email")}
-            placeholder="Email"
             required
             type="email"
             disabled={isSubmitting}
+            borderRadius="30px"
           />
         </InputGroup>
       </FormControl>
@@ -78,16 +82,17 @@ export const RegisterForm = () => {
         />
       </FormControl>
 
-      <FormControl isRequired={true}>
+      <FormControl variant="floating" isRequired={true} isInvalid>
+        <FormLabel backgroundColor="brand.300">Confirm password</FormLabel>
         <Input
           {...register("password_confirmation", {
             validate: (val) =>
               val === watch("password") || "Passwords do not match"
           })}
-          placeholder="Confirm password"
           required
           type="password"
           disabled={isSubmitting}
+          borderRadius="30px"
         />
         <ErrorMessage
           errors={errors}
@@ -97,8 +102,10 @@ export const RegisterForm = () => {
       </FormControl>
 
       <Flex gap={2}>
-        <Text>Already have an account?</Text>
-        <Text href="/login" as={Link}>
+        <Text textStyle="labelRegular" color="white">
+          Already have an account?
+        </Text>
+        <Text textStyle="labelRegular" color="white" href="/login" as={Link}>
           Login
         </Text>
       </Flex>

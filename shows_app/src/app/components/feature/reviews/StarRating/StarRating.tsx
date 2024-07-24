@@ -1,9 +1,8 @@
-"use client"
+"use client";
 
 import { StarIcon } from "@chakra-ui/icons";
 import { HStack, Icon } from "@chakra-ui/react";
 import { useState } from "react";
-
 
 interface IStarRatingProps {
   rating: number;
@@ -35,7 +34,7 @@ export const StarRating = ({ rating, onChange }: IStarRatingProps) => {
             <Icon
               as={StarIcon}
               key={index}
-              w={6}
+              maxWidth={6}
               h={6}
               cursor="pointer"
               color={

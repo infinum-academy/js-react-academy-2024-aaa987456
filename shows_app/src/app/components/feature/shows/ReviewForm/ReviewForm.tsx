@@ -64,44 +64,48 @@ export const ReviewForm = ({ showId }: IReviewFormProps) => {
 
   return (
     <Box
-      backgroundColor="brand.100"
+      backgroundColor="brand.300"
       borderRadius="md"
       paddingTop="8"
       paddingBottom="8"
     >
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing="4">
-          <FormLabel color="white" fontSize="x-large">
-            Reviews
-          </FormLabel>
+          <Flex justifyContent="space-between">
+            <FormLabel color="white" fontSize="headline">
+              Reviews
+            </FormLabel>
 
+            <FormControl>
+              <Input
+                {...register("comment")}
+                backgroundColor="white"
+                type="text"
+                placeholder="Add review"
+                disabled={isSubmitting}
+                minHeight="70px"
+                borderRadius="20px"
+              />
+            </FormControl>
+          </Flex>
           <FormControl>
-            <Input
-              {...register("comment")}
-              backgroundColor="white"
-              type="text"
-              placeholder="Add review"
-              disabled={isSubmitting}
-            />
-          </FormControl>
-
-          <FormControl>
-            <Flex alignItems="center" justifyContent="flex-start">
-              <Text margin="3" color="white">
-                Rating
-              </Text>
-              <StarRating rating={rating} onChange={handleRatingChange} />
+            <Flex alignItems="center" justifyContent="space-between">
+              <Flex>
+                <Text margin="3" paddingLeft="30%" color="white">
+                  Rating
+                </Text>
+                <StarRating rating={rating} onChange={handleRatingChange} />
+              </Flex>
+              <Button
+                type="submit"
+                backgroundColor="white"
+                borderRadius="50px"
+                maxWidth="150px"
+              >
+                Post
+              </Button>
             </Flex>
           </FormControl>
-
-          <Button
-            type="submit"
-            backgroundColor="white"
-            borderRadius="50px"
-            maxWidth="100px"
-          >
-            Post
-          </Button>
         </Stack>
       </form>
     </Box>
