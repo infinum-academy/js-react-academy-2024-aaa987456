@@ -1,5 +1,5 @@
 import { Container } from "@chakra-ui/react";
-import { RegisterForm } from "../components/feature/auth/RegisterForm/RegisterForm";
+import { RegisterForm } from "@/app/components/feature/auth/RegisterForm/RegisterForm";
 
 export default function Register() {
   return (

@@ -5,24 +5,17 @@ import { IReview } from "../../../../typings/reviews";
 
 interface IReviewListProps {
   reviews: Array<IReview>;
-  onDeleteReview: (reviewId: string, userId: string) => void;
 }
-
-export const ReviewList = ({ reviews, onDeleteReview }: IReviewListProps) => {
+export const ReviewList = ({ reviews }: IReviewListProps) => {
   if (!Array.isArray(reviews.reviews)) {
     console.error("Reviews is not an array");
-    return null;
-  }
-
-  if (!onDeleteReview || typeof onDeleteReview !== "function") {
-    console.error("onDeleteReview is not a function");
     return null;
   }
 
   return (
     <Box>
       {reviews.reviews.map((review: IReview) => (
-        <ReviewItem key={review.id} review={review} onDelete={onDeleteReview} />
+        <ReviewItem key={review.id} review={review} />
       ))}
     </Box>
   );

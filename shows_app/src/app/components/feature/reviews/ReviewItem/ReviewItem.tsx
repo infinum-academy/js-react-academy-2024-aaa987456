@@ -12,16 +12,29 @@ import { StarIcon } from "@chakra-ui/icons";
 import { IReview } from "../../../../typings/reviews";
 import useSWRMutation from "swr/mutation";
 import { swrKeys } from "@/fetchers/swrKeys";
-import { mutator } from "@/fetchers/mutators";
+import { deleteReviewM, mutator } from "@/fetchers/mutators";
+import { mutate } from "swr";
 
 export interface IReviewItemProps {
   review: IReview;
-  onDelete: (reviewId: string, userId: string) => void;
 }
 
-export const ReviewItem = ({ review, onDelete }: IReviewItemProps) => {
-  const handleDelete = () => {
-    onDelete(review.id, review.user.id);
+export const ReviewItem = ({ review }: IReviewItemProps) => {
+  const { trigger: deleteReviewTrigger } = useSWRMutation(
+    swrKeys.delete(review.id),
+    deleteReviewM
+  );
+
+  const handleDelete = async () => {
+    try {
+      await deleteReviewTrigger({
+        reviewId: review.id,
+        userId: review.user.id
+      });
+      mutate(swrKeys.getReviews);
+    } catch (error) {
+      console.error("Failed to delete review:", error);
+    }
   };
 
   return (

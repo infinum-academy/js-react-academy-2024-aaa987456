@@ -1,6 +1,6 @@
 "use client";
 
-import { ButtonForm } from "@/app/components/shared/Button";
+import { FormButton } from "@/app/components/shared/Button";
 import { ILoginArgs, IRegisterArgs } from "@/app/typings/auths";
 import { mutator } from "@/fetchers/mutators";
 import { swrKeys } from "@/fetchers/swrKeys";
@@ -17,8 +17,8 @@ import {
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import useSWRMutation from "swr/mutation";
-import { useRouter } from "next/navigation";
 import { PasswordInput } from "../PasswordInput/PasswordInput";
+import { mutate } from "swr";
 
 export const LoginForm = () => {
   const {
@@ -27,13 +27,12 @@ export const LoginForm = () => {
     formState: { errors, isSubmitting }
   } = useForm<ILoginArgs>();
   const { trigger } = useSWRMutation(swrKeys.login, mutator);
-  const router = useRouter();
 
   const onSubmit = async (data: ILoginArgs) => {
     try {
       console.log(data);
       await trigger(data);
-      router.push("/all-shows");
+      mutate(swrKeys.user);
     } catch (error) {
       console.error("Login failed:", error);
     }
@@ -67,7 +66,7 @@ export const LoginForm = () => {
         </Text>
       </Flex>
 
-      <ButtonForm type="submit" text="LOGIN" />
+      <FormButton type="submit" text="LOGIN" />
     </chakra.form>
   );
 };

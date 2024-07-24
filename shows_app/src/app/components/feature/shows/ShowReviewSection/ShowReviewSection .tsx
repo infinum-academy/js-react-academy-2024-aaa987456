@@ -6,20 +6,18 @@ import { IReview, IReviewContent } from "@/app/typings/reviews";
 
 export interface IShowReviewSectionProps {
   reviews: Array<IReview>;
-  onAddReview: (review: IReview) => void;
-  onDeleteReview: (reviewId: string, userId: string) => void;
+  showId: string;
 }
 
 export const ShowReviewSection = ({
   reviews,
-  onAddReview,
-  onDeleteReview
+  showId
 }: IShowReviewSectionProps) => {
   console.log("Reviews in ShowReviewSection:", reviews);
   return (
     <Box width="100%">
-      <ReviewForm addShowReview={onAddReview} />
-      <ReviewList reviews={reviews} onDeleteReview={onDeleteReview} />
+      <ReviewForm showId={showId} />
+      <ReviewList reviews={reviews} showId={showId} />
     </Box>
   );
 };

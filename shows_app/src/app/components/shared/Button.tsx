@@ -6,7 +6,7 @@ interface ICustomButtonProps {
   isLoading?: boolean;
 }
 
-export const ButtonForm = ({ text, type, isLoading }: ICustomButtonProps) => {
+export const FormButton = ({ text, type, isLoading }: ICustomButtonProps) => {
   return (
     <Button
       type="submit"

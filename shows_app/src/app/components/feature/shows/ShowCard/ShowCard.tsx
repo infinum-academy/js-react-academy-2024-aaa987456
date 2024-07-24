@@ -23,7 +23,7 @@ export const ShowCard = ({ show }: IShowCard) => {
           </Text>
           <Box>
             <Text>
-              <Icon as={StarIcon} color="#3f117c" /> {show.average_rating}/5
+              <Icon as={StarIcon} color="bold.100" /> {show.average_rating}/5
             </Text>
           </Box>
         </Flex>
