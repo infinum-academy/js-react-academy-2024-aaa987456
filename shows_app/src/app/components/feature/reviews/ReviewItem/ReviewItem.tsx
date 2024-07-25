@@ -34,7 +34,7 @@ export const ReviewItem = ({ review }: IReviewItemProps) => {
       backgroundColor="brand.200"
       padding="4"
       marginBottom="4"
-      borderRadius="md"
+      borderRadius="15px"
       display="flex"
       alignItems="flex-start"
       justifyContent="space-between"
