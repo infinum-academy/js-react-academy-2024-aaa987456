@@ -1,4 +1,3 @@
-import { ILoginArgs, IRegisterArgs } from "@/app/typings/auths";
 import { LockIcon } from "@chakra-ui/icons";
 import {
   Button,
@@ -6,24 +5,30 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
-  InputRightElement
+  InputRightElement,
+  InputProps
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { UseFormRegister } from "react-hook-form";
 
-interface IPasswordInputProps {
-  register: any;
+interface IPasswordInputProps extends InputProps {
+  register: UseFormRegister<any>;
   isSubmitting: boolean;
 }
 
 export const PasswordInput = ({
   register,
-  isSubmitting
+  isSubmitting,
+  ...rest
 }: IPasswordInputProps) => {
   const [showPassword, setShowPassword] = useState(false);
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   const handleTogglePassword = () => {
     setShowPassword(!showPassword);
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
   };
 
   return (
@@ -34,14 +39,18 @@ export const PasswordInput = ({
             required: true,
             minLength: {
               value: 8,
-              message: "At least 8 characters "
+              message: "At least 8 characters"
             }
           })}
+          ref={(e) => {
+            register("password").ref(e);
+            inputRef.current = e;
+          }}
           pr="4.5rem"
-          required
           type={showPassword ? "text" : "password"}
           placeholder="Password"
           disabled={isSubmitting}
+          {...rest}
         />
         <InputLeftElement pointerEvents="none">
           <LockIcon color="gray.300" />

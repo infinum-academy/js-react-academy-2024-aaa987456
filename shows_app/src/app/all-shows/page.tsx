@@ -4,9 +4,9 @@ import RootLayout from "../layout";
 
 export default function AllShows() {
   return (
-    <RootLayout showSidebar={true}>
+    <>
       <AuthRedirect to="/login" condition="loggedOut" />
       <ShowsList />
-    </RootLayout>
+    </>
   );
 }

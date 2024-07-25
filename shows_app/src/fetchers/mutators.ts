@@ -1,4 +1,7 @@
 import { MutatorArgs } from "@/app/typings/auths";
+import { IReview, IReviewContent } from "@/app/typings/reviews";
+import { fetcher } from "./fetchers";
+import { swrKeys } from "./swrKeys";
 
 export async function mutator<T>(
   url: string,
@@ -37,4 +40,27 @@ export async function mutator<T>(
   }
 
   return response.json();
+}
+
+export async function createReviewM(url: string, { arg }: { arg: IReview }) {
+  try {
+    const response = await fetcher(url, "POST", arg);
+    return response;
+  } catch (error) {
+    console.error("Error creating review:", error);
+    throw error;
+  }
+}
+
+export async function deleteReviewM(
+  url: string,
+  { arg }: { arg: { reviewId: string; userId: string } }
+) {
+  try {
+    const response = await fetcher(url, "DELETE");
+    return response;
+  } catch (error) {
+    console.error("Error deleting review:", error);
+    throw error;
+  }
 }

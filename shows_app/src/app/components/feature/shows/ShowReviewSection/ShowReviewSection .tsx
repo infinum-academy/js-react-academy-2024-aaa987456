@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Box } from "@chakra-ui/react";
 import { ReviewList } from "../../reviews/ReviewList/ReviewList";
 import { ReviewForm } from "../ReviewForm/ReviewForm";
@@ -6,19 +6,18 @@ import { IReview, IReviewContent } from "@/app/typings/reviews";
 
 export interface IShowReviewSectionProps {
   reviews: Array<IReview>;
-  onAddReview: (review: IReviewContent) => void;
-  onDeleteReview: (review: IReview) => void;
+  showId: string;
 }
 
 export const ShowReviewSection = ({
   reviews,
-  onAddReview,
-  onDeleteReview
+  showId
 }: IShowReviewSectionProps) => {
+  console.log("Reviews in ShowReviewSection:", reviews);
   return (
     <Box width="100%">
-      <ReviewForm addShowReview={onAddReview} />
-      <ReviewList reviews={reviews} onDeleteReview={onDeleteReview} />
+      <ReviewForm showId={showId} />
+      <ReviewList reviews={reviews} showId={showId} />
     </Box>
   );
 };

@@ -1,10 +1,10 @@
 "use client";
 
-import { ButtonForm } from "@/app/components/shared/Button";
+import { FormButton } from "@/app/components/shared/Button";
 import { IRegisterArgs } from "@/app/typings/auths";
 import { mutator } from "@/fetchers/mutators";
 import { swrKeys } from "@/fetchers/swrKeys";
-import { AtSignIcon, LockIcon, PhoneIcon } from "@chakra-ui/icons";
+import { AtSignIcon, LockIcon } from "@chakra-ui/icons";
 import {
   chakra,
   Flex,
@@ -16,14 +16,18 @@ import {
   Text,
   Link,
   InputLeftElement,
-  InputGroup
+  InputGroup,
+  Img
 } from "@chakra-ui/react";
 import { ErrorMessage } from "@hookform/error-message";
 import { useForm } from "react-hook-form";
 import useSWRMutation from "swr/mutation";
+import { useState } from "react";
 import { PasswordInput } from "../PasswordInput/PasswordInput";
 
 export const RegisterForm = () => {
+  const [isRegistered, setIsRegistered] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -35,9 +39,12 @@ export const RegisterForm = () => {
   const onSubmit = async (data: IRegisterArgs) => {
     console.log(data);
     await trigger(data);
+    setIsRegistered(true);
   };
 
-  return (
+  return isRegistered ? (
+    <Heading>Registration Successful!</Heading>
+  ) : (
     <chakra.form
       display="flex"
       flexDirection="column"
@@ -45,7 +52,8 @@ export const RegisterForm = () => {
       gap={10}
       onSubmit={handleSubmit(onSubmit)}
     >
-      <Heading as="h4">TV SHOW APP</Heading>
+      <Img src="assets/Logo.png"></Img>
+
       <FormControl isRequired={true}>
         <InputGroup>
           <InputLeftElement pointerEvents="none">
@@ -60,6 +68,7 @@ export const RegisterForm = () => {
           />
         </InputGroup>
       </FormControl>
+
       <FormControl isRequired>
         <PasswordInput register={register} isSubmitting={isSubmitting} />
         <ErrorMessage
@@ -94,7 +103,7 @@ export const RegisterForm = () => {
         </Text>
       </Flex>
 
-      <ButtonForm type="submit" text="SIGN UP" />
+      <FormButton type="submit" text="SIGN UP" />
     </chakra.form>
   );
 };

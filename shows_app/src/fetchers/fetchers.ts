@@ -1,32 +1,31 @@
-export async function fetcher<T>(
-  input: string | URL | globalThis.Request,
-  init?: RequestInit
-): Promise<T> {
-  const auth = {
+export const fetcher = async <T>(
+  url: string,
+  method: string = "GET",
+  body?: any
+): Promise<T> => {
+  const headers: HeadersInit = {
+    "access-token": localStorage.getItem("authToken") || "",
     client: localStorage.getItem("client") || "",
-    accessToken: localStorage.getItem("authToken") || "",
-    uid: localStorage.getItem("uid") || ""
+    uid: localStorage.getItem("uid") || "",
+    "token-type": "Bearer",
+    "Content-Type": "application/json",
+    Accept: "application/json"
   };
 
   try {
-    const response = await fetch(input, {
-      headers: {
-        client: auth.client,
-        "access-token": auth.accessToken,
-        uid: auth.uid,
-        ...init?.headers
-      },
-      ...init
+    const response = await fetch(url, {
+      method,
+      headers,
+      body: body ? JSON.stringify(body) : undefined
     });
 
     if (!response.ok) {
       throw new Error(`Response status: ${response.status}`);
     }
 
-    const data = await response.json();
-
-    return data;
+    return response.json();
   } catch (error) {
-    throw new Error(`Fetch error: ${error}`);
+    console.error(`Fetch error: ${error}`);
+    throw error;
   }
-}
+};

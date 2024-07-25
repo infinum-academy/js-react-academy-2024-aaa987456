@@ -5,12 +5,11 @@ import { ShowsComponent } from "@/app/components/feature/shows/ShowsComponent/Sh
 
 export default function ShowSelectedId() {
   return (
-    <RootLayout showSidebar={true}>
+    <>
       <AuthRedirect to="/login" condition="loggedOut" />
-
       <Flex maxWidth="70%" direction="column">
         <ShowsComponent />
       </Flex>
-    </RootLayout>
+    </>
   );
 }

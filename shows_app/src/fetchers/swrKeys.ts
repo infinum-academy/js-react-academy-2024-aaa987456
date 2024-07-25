@@ -8,5 +8,6 @@ export const swrKeys = {
   top: `${api_url}/shows/top_rated`,
   selected: (id: string) => `${api_url}/shows/${id}`,
   create: `${api_url}/reviews`,
-  delete: (id: string) => `${api_url}/reviews/${id}`
+  delete: (id: string) => `${api_url}/reviews/${id}`,
+  getReviews: (id: string) => `${api_url}/shows/${id}/reviews`
 };
