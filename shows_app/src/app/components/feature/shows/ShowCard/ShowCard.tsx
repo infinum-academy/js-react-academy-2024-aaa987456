@@ -15,6 +15,7 @@ export const ShowCard = ({ show }: IShowCard) => {
       borderBottomRadius="20px"
       maxHeight="400px"
       maxWidth="240px"
+      minWidth="150px"
     >
       <Image
         minHeight="200px"

@@ -6,6 +6,7 @@ import { StarIcon } from "@chakra-ui/icons";
 import { fetcher } from "@/fetchers/fetchers";
 import { IUser } from "@/app/typings/reviews";
 import { swrKeys } from "@/fetchers/swrKeys";
+import { StepperFavorite } from "../stepper/Stepper";
 
 export const ProfileUser = () => {
   const { data, error, isLoading } = useSWR<{ user: IUser }>(
@@ -53,6 +54,7 @@ export const ProfileUser = () => {
             <Button textStyle="button" borderRadius="30px">
               Upload Image
             </Button>
+            <StepperFavorite />
           </Flex>
         </>
       ) : (

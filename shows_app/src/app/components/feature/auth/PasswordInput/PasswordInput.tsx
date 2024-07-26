@@ -45,10 +45,10 @@ export const PasswordInput = ({
               message: "At least 8 characters"
             }
           })}
-          ref={(e) => {
-            register("password").ref(e);
-            inputRef.current = e;
-          }}
+          // ref={(e) => {
+          //   register("password").ref(e);
+          //   inputRef.current = e;
+          // }}
           pr="4.5rem"
           type={showPassword ? "text" : "password"}
           disabled={isSubmitting}
