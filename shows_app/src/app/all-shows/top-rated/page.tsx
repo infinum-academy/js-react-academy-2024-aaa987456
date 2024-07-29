@@ -6,10 +6,8 @@ import { Flex } from "@chakra-ui/react";
 export default function AllShows() {
   return (
     <>
-      <Flex maxWidth="70%">
-        <AuthRedirect to="/login" condition="loggedOut" />
-        <TopRatedShows />
-      </Flex>
+      <AuthRedirect to="/login" condition="loggedOut" />
+      <TopRatedShows />
     </>
   );
 }

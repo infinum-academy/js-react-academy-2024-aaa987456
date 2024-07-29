@@ -6,9 +6,8 @@ export default function Profile() {
   return (
     <>
       <AuthRedirect to="/login" condition="loggedOut" />
-      <Flex direction="column" justifyContent="center">
-        <ProfileUser />
-      </Flex>
+
+      <ProfileUser />
     </>
   );
 }

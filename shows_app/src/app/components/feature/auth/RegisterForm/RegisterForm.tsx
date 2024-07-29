@@ -4,12 +4,11 @@ import { FormButton } from "@/app/components/shared/Button";
 import { IRegisterArgs } from "@/app/typings/auths";
 import { mutator } from "@/fetchers/mutators";
 import { swrKeys } from "@/fetchers/swrKeys";
-import { AtSignIcon, EmailIcon, LockIcon } from "@chakra-ui/icons";
+import { EmailIcon } from "@chakra-ui/icons";
 import {
   chakra,
   Flex,
   FormControl,
-  FormErrorMessage,
   FormLabel,
   Heading,
   Input,
@@ -58,7 +57,9 @@ export const RegisterForm = () => {
       <Img src="assets/Logo.png"></Img>
 
       <FormControl variant="floating" isRequired={true}>
-        <FormLabel backgroundColor="brand.300">Email</FormLabel>
+        <FormLabel backgroundColor="brand.300" color="white">
+          Email
+        </FormLabel>
         <InputGroup>
           <InputLeftElement pointerEvents="none">
             <EmailIcon color="gray.300" />
@@ -69,6 +70,7 @@ export const RegisterForm = () => {
             type="email"
             disabled={isSubmitting}
             borderRadius="30px"
+            color="white"
           />
         </InputGroup>
       </FormControl>
@@ -83,7 +85,9 @@ export const RegisterForm = () => {
       </FormControl>
 
       <FormControl variant="floating" isRequired={true} isInvalid>
-        <FormLabel backgroundColor="brand.300">Confirm password</FormLabel>
+        <FormLabel color="white" backgroundColor="brand.300">
+          Confirm password
+        </FormLabel>
         <Input
           {...register("password_confirmation", {
             validate: (val) =>

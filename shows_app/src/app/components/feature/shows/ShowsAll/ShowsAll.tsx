@@ -6,7 +6,7 @@ import { ShowCard } from "../ShowCard/ShowCard";
 import useSWR from "swr";
 import { swrKeys } from "@/fetchers/swrKeys";
 
-interface ShowListProps {
+export interface ShowListProps {
   fetcher: (url: string) => Promise<{ shows: IShows[] }>;
   url: string;
 }

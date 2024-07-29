@@ -1,15 +1,26 @@
 import React from "react";
-import { Box, Image, Text } from "@chakra-ui/react";
-import { ShowContext, useShowContext } from "./ShowsContextProvider";
+import { Box, Flex, Image, Text } from "@chakra-ui/react";
+import { useShowContext } from "./ShowsContextProvider";
 
 export const ShowsFinal = () => {
-  const { selectedShows } = useShowContext();
+  const { finalWinner } = useShowContext();
+
+  if (!finalWinner) return null;
 
   return (
-    <Box>
-      <Text fontSize="2xl" mb={4}>
+    <Flex direction="column" alignItems="center">
+      <Text fontSize="titleRegular" mb={4} color="white">
         Tonight you are watching:
       </Text>
-    </Box>
+      <Image
+        maxHeight="300px"
+        src={finalWinner.image_url}
+        alt={finalWinner.title}
+      />
+      <Text fontSize="titleRegular" color="white">
+        {finalWinner.title}
+      </Text>
+      <Text color="white">{finalWinner.average_rating} /5</Text>
+    </Flex>
   );
 };

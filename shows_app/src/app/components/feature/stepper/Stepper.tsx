@@ -1,5 +1,6 @@
 import {
   Button,
+  Flex,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -22,7 +23,7 @@ export const StepperFavorite = () => {
       </Button>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent backgroundColor="brand.300">
           <ModalHeader></ModalHeader>
           <ModalCloseButton />
           <ModalBody>
@@ -30,10 +31,12 @@ export const StepperFavorite = () => {
           </ModalBody>
 
           <ModalFooter>
-            <ShowsProgress />
-            <Button borderRadius="30px" onClick={onClose}>
-              Close
-            </Button>
+            <Flex direction="row" flex="1" gap={4}>
+              <ShowsProgress />
+              <Button borderRadius="30px" onClick={onClose}>
+                Close
+              </Button>
+            </Flex>
           </ModalFooter>
         </ModalContent>
       </Modal>

@@ -3,7 +3,17 @@ import { useShowContext } from "./ShowsContextProvider";
 
 export const ShowsProgress = () => {
   const { currentStep } = useShowContext();
-  const progress = ((currentStep + 1) / 7) * 100;
+  const progress = (currentStep / 7) * 100;
 
-  return <Progress value={progress} size="sm" color="brand.300" />;
+  console.log("object", currentStep);
+
+  return (
+    <Progress
+      value={progress}
+      backgroundColor="brand.200"
+      size="lg"
+      width="300px"
+      borderRadius="20px"
+    />
+  );
 };

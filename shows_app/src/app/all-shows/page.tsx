@@ -6,7 +6,7 @@ import RootLayout from "../layout";
 export default function AllShows() {
   return (
     <>
-      <Flex maxWidth="70%">
+      <Flex>
         <AuthRedirect to="/login" condition="loggedOut" />
         <ShowsList />
       </Flex>

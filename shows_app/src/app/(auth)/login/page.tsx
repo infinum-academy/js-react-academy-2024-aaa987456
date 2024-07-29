@@ -5,7 +5,7 @@ import { AuthRedirect } from "../../components/feature/auth/AuthRedirect/AuthRed
 export default function Login() {
   return (
     <>
-      <AuthRedirect to="/all-shows" condition={"loggedIn"} />
+      <AuthRedirect to="/all-shows" condition="loggedIn" />
       <Flex justifyItems="center">
         <Container backgroundColor="brand.300">
           <LoginForm />

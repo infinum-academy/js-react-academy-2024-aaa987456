@@ -45,7 +45,11 @@ export const ShowsComponent = () => {
   return (
     <Flex direction="column">
       <ShowDetails show={data.show} averageRating={data.show.average_rating} />
-      <ShowReviewSection reviews={reviewsData || []} showId={id} />
+      <ShowReviewSection
+        reviews={reviewsData || []}
+        showId={id}
+        show={data.show}
+      />
     </Flex>
   );
 };

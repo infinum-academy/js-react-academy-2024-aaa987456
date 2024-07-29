@@ -9,7 +9,6 @@ import {
   Flex,
   FormControl,
   FormLabel,
-  Heading,
   Img,
   Input,
   InputGroup,
@@ -21,7 +20,7 @@ import { useForm } from "react-hook-form";
 import useSWRMutation from "swr/mutation";
 import { PasswordInput } from "../PasswordInput/PasswordInput";
 import { mutate } from "swr";
-import { EmailIcon, LockIcon } from "@chakra-ui/icons";
+import { EmailIcon } from "@chakra-ui/icons";
 
 export const LoginForm = () => {
   const {
@@ -54,7 +53,9 @@ export const LoginForm = () => {
       <Img src="assets/Logo.png"></Img>
 
       <FormControl variant="floating" isRequired={true}>
-        <FormLabel backgroundColor="brand.300">Email</FormLabel>
+        <FormLabel backgroundColor="brand.300" color="white">
+          Email
+        </FormLabel>
         <InputGroup size="md">
           <Input
             {...register("email")}

@@ -7,7 +7,7 @@ export default function ShowSelectedId() {
   return (
     <>
       <AuthRedirect to="/login" condition="loggedOut" />
-      <Flex maxWidth="70%" direction="column">
+      <Flex direction="column">
         <ShowsComponent />
       </Flex>
     </>
