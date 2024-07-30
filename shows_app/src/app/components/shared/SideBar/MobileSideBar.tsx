@@ -15,8 +15,12 @@ import {
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { LogoutButton } from "./LogoutButton";
+import { usePathname } from "next/navigation";
 
 export const MobileSideBar = () => {
+  const pathname = usePathname();
+
+  const isActive = (path: string) => pathname === path;
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -55,17 +59,31 @@ export const MobileSideBar = () => {
           <DrawerBody backgroundColor="brand.200">
             <Stack spacing="4">
               <NextLink href="/all-shows">
-                <Text fontSize="headline" onClick={onClose} color="white">
+                <Text
+                  fontSize="headline"
+                  color={isActive("/all-shows") ? "brand.400" : "white"}
+                  onClick={onClose}
+                >
                   All shows
                 </Text>
               </NextLink>
               <NextLink href="/all-shows/top-rated">
-                <Text fontSize="headline" onClick={onClose} color="white">
+                <Text
+                  fontSize="headline"
+                  color={
+                    isActive("/all-shows/top-rated") ? "brand.400" : "white"
+                  }
+                  onClick={onClose}
+                >
                   Top rated
                 </Text>
               </NextLink>
               <NextLink href="/profile">
-                <Text fontSize="headline" onClick={onClose} color="white">
+                <Text
+                  fontSize="headline"
+                  color={isActive("/profile") ? "brand.400" : "white"}
+                  onClick={onClose}
+                >
                   My profile
                 </Text>
               </NextLink>
