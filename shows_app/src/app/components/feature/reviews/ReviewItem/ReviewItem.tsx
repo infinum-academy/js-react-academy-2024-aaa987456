@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Flex, Text, Img, Button, Icon, Stack } from "@chakra-ui/react";
+import { Box, Flex, Text, Img, Button, Icon } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
 import { IReview } from "../../../../typings/reviews";
 import useSWRMutation from "swr/mutation";

@@ -5,8 +5,6 @@ export const ShowsProgress = () => {
   const { currentStep } = useShowContext();
   const progress = (currentStep / 7) * 100;
 
-  console.log("object", currentStep);
-
   return (
     <Progress
       value={progress}

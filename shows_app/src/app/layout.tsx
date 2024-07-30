@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Providers } from "./providers";
-import { SideBarNavigation } from "./components/shared/SideBar/SidebarNavigation";
-import { Flex } from "@chakra-ui/react";
+import { useTheme } from "@chakra-ui/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,11 +11,9 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
-  showSidebar
+  children
 }: Readonly<{
   children: React.ReactNode;
-  showSidebar: boolean;
 }>) {
   return (
     <html lang="en">

@@ -24,8 +24,7 @@ export const StepperFavorite = () => {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent backgroundColor="brand.300">
-          <ModalHeader></ModalHeader>
-          <ModalCloseButton />
+          <ModalCloseButton color="white" />
           <ModalBody>
             <ShowsStepper />
           </ModalBody>

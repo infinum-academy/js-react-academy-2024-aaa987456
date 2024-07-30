@@ -1,7 +1,7 @@
 "use client";
 
 import { FormButton } from "@/app/components/shared/Button";
-import { ILoginArgs, IRegisterArgs } from "@/app/typings/auths";
+import { ILoginArgs } from "@/app/typings/auths";
 import { mutator } from "@/fetchers/mutators";
 import { swrKeys } from "@/fetchers/swrKeys";
 import {

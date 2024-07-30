@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Flex } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import { ReviewItem } from "../ReviewItem/ReviewItem";
 import { IReview } from "../../../../typings/reviews";
 import { IShows } from "@/app/typings/shows";

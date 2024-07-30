@@ -10,7 +10,6 @@ export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <SWRConfig>
       <ChakraProvider theme={themeNew}>
-        {" "}
         <ShowsContextProvider>{children}</ShowsContextProvider>
       </ChakraProvider>
     </SWRConfig>

@@ -2,11 +2,10 @@
 
 import { Box, Flex, Text, Img, Spinner, Button } from "@chakra-ui/react";
 import useSWR from "swr";
-import { StarIcon } from "@chakra-ui/icons";
 import { fetcher } from "@/fetchers/fetchers";
 import { IUser } from "@/app/typings/reviews";
 import { swrKeys } from "@/fetchers/swrKeys";
-import { StepperFavorite } from "../stepper/Stepper";
+import { StepperFavorite } from "../stepper/StepperFavorite";
 
 export const ProfileUser = () => {
   const { data, error, isLoading } = useSWR<{ user: IUser }>(

@@ -23,6 +23,10 @@ export const fetcher = async <T>(
       throw new Error(`Response status: ${response.status}`);
     }
 
+    if (response.status === 204) {
+      return {} as T;
+    }
+
     return response.json();
   } catch (error) {
     console.error(`Fetch error: ${error}`);

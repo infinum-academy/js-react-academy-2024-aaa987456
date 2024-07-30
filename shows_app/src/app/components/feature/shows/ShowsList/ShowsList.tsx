@@ -1,6 +1,5 @@
 "use client";
 
-import { IShows } from "@/app/typings/shows";
 import { ShowsAll } from "../ShowsAll/ShowsAll";
 import { fetcher } from "@/fetchers/fetchers";
 import { swrKeys } from "@/fetchers/swrKeys";

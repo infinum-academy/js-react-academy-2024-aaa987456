@@ -16,7 +16,7 @@ export const SideBarNavigation = () => {
       backgroundColor="brand.300"
       color="white"
       padding="4"
-      display={{ base: "none", md: "flex" }}
+      display="flex"
       flexDirection="column"
     >
       <Img src="../assets/Logo.png" maxWidth="200px" paddingBottom="55px" />

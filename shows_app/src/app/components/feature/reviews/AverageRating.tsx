@@ -1,4 +1,3 @@
-import { IShows } from "@/app/typings/shows";
 import { Text } from "@chakra-ui/react";
 
 interface IAverageRatingDisplayProps {

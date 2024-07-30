@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { ShowContext } from "./ShowsContextProvider";
-import { Box, Flex, Image, Text } from "@chakra-ui/react";
+import { Flex, Image, Text } from "@chakra-ui/react";
 import { IShows } from "@/app/typings/shows";
 
 export const ShowsStep = () => {
@@ -30,7 +30,7 @@ export const ShowsStep = () => {
     if (currentStep < 4) {
       return Array.isArray(shows)
         ? shows.slice(currentStep * 2, currentStep * 2 + 2)
-        : console.log("not array");
+        : [];
     } else if (currentStep < 6) {
       return Array.isArray(firstRoundWinners)
         ? firstRoundWinners.slice(
@@ -42,8 +42,6 @@ export const ShowsStep = () => {
       return Array.isArray(secondRoundWinners) ? secondRoundWinners : [];
     }
   }
-
-  console.log(getShowsForCurrentStep());
 
   const currentShows = getShowsForCurrentStep();
 

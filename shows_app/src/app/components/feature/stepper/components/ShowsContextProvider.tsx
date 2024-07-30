@@ -40,8 +40,6 @@ export const ShowsContextProvider = ({
   );
   const [finalWinner, setFinalWinner] = useState<IShows | undefined>(undefined);
 
-  console.log("vraća ", shows);
-
   return (
     <ShowContext.Provider
       value={{

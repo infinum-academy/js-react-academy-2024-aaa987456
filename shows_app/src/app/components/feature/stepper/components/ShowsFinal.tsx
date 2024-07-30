@@ -5,7 +5,9 @@ import { useShowContext } from "./ShowsContextProvider";
 export const ShowsFinal = () => {
   const { finalWinner } = useShowContext();
 
-  if (!finalWinner) return null;
+  if (!finalWinner) {
+    return null;
+  }
 
   return (
     <Flex direction="column" alignItems="center">
