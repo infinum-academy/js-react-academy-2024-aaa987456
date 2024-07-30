@@ -2,7 +2,7 @@ import React from "react";
 import { Box } from "@chakra-ui/react";
 import { ReviewList } from "../../reviews/ReviewList/ReviewList";
 import { ReviewForm } from "../ReviewForm/ReviewForm";
-import { IReview } from "@/app/typings/reviews";
+import { IReview, IUser } from "@/app/typings/reviews";
 import { IShows } from "@/app/typings/shows";
 
 export interface IShowReviewSectionProps {
@@ -16,7 +16,6 @@ export const ShowReviewSection = ({
   showId,
   show
 }: IShowReviewSectionProps) => {
-  console.log("Reviews in ShowReviewSection:", reviews);
   return (
     <Box width="100%">
       <ReviewForm showId={showId} />

@@ -33,7 +33,6 @@ export async function mutator<T>(
     localStorage.setItem("client", client || "");
     localStorage.setItem("authToken", accessToken);
     localStorage.setItem("uid", uid || "");
-    console.log("Token saved:", accessToken);
   } else {
     throw new Error("No access token received.");
   }

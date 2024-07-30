@@ -3,7 +3,6 @@ import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import {
   Text,
   useDisclosure,
-  useBreakpointValue,
   IconButton,
   Drawer,
   DrawerOverlay,
@@ -12,12 +11,10 @@ import {
   Flex,
   Img,
   DrawerBody,
-  Stack,
-  Button
+  Stack
 } from "@chakra-ui/react";
-import { useRouter } from "next/navigation";
 import NextLink from "next/link";
-import { handleLogout } from "./Logout";
+import { LogoutButton } from "./LogoutButton";
 
 export const MobileSideBar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -72,16 +69,7 @@ export const MobileSideBar = () => {
                   My profile
                 </Text>
               </NextLink>
-              <Button
-                onClick={handleLogout}
-                backgroundColor="brand.200"
-                color="white"
-                width="full"
-              >
-                <Text fontSize="titleRegular" color="white">
-                  Log Out
-                </Text>
-              </Button>
+              <LogoutButton />
             </Stack>
           </DrawerBody>
         </DrawerContent>

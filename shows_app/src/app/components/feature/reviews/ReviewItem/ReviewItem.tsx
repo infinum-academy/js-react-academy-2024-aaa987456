@@ -1,12 +1,13 @@
 import React from "react";
 import { Box, Flex, Text, Img, Button, Icon } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
-import { IReview } from "../../../../typings/reviews";
+import { IReview, IUser } from "../../../../typings/reviews";
 import useSWRMutation from "swr/mutation";
 import { swrKeys } from "@/fetchers/swrKeys";
 import { deleteReviewM } from "@/fetchers/mutators";
-import { mutate } from "swr";
+import useSWR, { mutate } from "swr";
 import { IShows } from "@/app/typings/shows";
+import { fetcher } from "@/fetchers/fetchers";
 
 export interface IReviewItemProps {
   review: IReview;
@@ -30,6 +31,10 @@ export const ReviewItem = ({ review, show }: IReviewItemProps) => {
       console.error("Failed to delete review:", error);
     }
   };
+
+  const { data } = useSWR<{ user: IUser }>(swrKeys.user, fetcher);
+
+  const currentUser = data?.user;
 
   return (
     <Box
@@ -71,16 +76,18 @@ export const ReviewItem = ({ review, show }: IReviewItemProps) => {
           {review.comment}
         </Text>
       </Flex>
-      <Button
-        bg="white"
-        borderRadius="50px"
-        maxW="100px"
-        mt="4"
-        onClick={handleDelete}
-        fontSize="button"
-      >
-        Remove
-      </Button>
+      {review.user.id === currentUser?.id && (
+        <Button
+          bg="white"
+          borderRadius="50px"
+          maxW="100px"
+          mt="4"
+          onClick={handleDelete}
+          fontSize="button"
+        >
+          Remove
+        </Button>
+      )}
     </Box>
   );
 };

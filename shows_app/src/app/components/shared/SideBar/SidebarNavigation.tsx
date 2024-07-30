@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import { Box, Button, Flex, Img, Spacer, Stack, Text } from "@chakra-ui/react";
+import { Box, Flex, Img, Spacer, Stack, Text } from "@chakra-ui/react";
 import NextLink from "next/link";
-import { handleLogout } from "./Logout";
+import { LogoutButton } from "./LogoutButton";
 
 export const SideBarNavigation = () => {
   return (
@@ -33,14 +33,7 @@ export const SideBarNavigation = () => {
         <Spacer />
       </Stack>
       <Flex justifyContent="flex-start">
-        <Button
-          onClick={handleLogout}
-          backgroundColor="brand.300"
-          color="white"
-          width="auto"
-        >
-          <Text fontSize="titleRegular">Log Out</Text>
-        </Button>
+        <LogoutButton />
       </Flex>
     </Box>
   );

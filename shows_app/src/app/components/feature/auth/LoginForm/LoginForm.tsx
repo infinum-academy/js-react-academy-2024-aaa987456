@@ -26,13 +26,12 @@ export const LoginForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting }
+    formState: { isSubmitting }
   } = useForm<ILoginArgs>();
   const { trigger } = useSWRMutation(swrKeys.login, mutator);
 
   const onSubmit = async (data: ILoginArgs) => {
     try {
-      console.log(data);
       await trigger(data);
       mutate(swrKeys.user);
     } catch (error) {

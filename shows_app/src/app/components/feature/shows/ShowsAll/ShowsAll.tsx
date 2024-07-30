@@ -4,6 +4,7 @@ import { IShows } from "../../../../typings/shows";
 import { SimpleGrid, Box, Spinner, Text, Flex } from "@chakra-ui/react";
 import { ShowCard } from "../ShowCard/ShowCard";
 import useSWR from "swr";
+import { SpinnerElement } from "@/app/components/shared/SpinnerElement";
 
 export interface ShowListProps {
   fetcher: (url: string) => Promise<{ shows: IShows[] }>;
@@ -19,12 +20,9 @@ export const ShowsAll = ({ fetcher, url }: ShowListProps) => {
         <Text>Failed to load shows</Text>
       </Box>
     );
-  if (isLoading)
-    return (
-      <Box>
-        <Spinner />
-      </Box>
-    );
+  if (isLoading) {
+    return <SpinnerElement />;
+  }
 
   const showsFetched = data?.shows || [];
 

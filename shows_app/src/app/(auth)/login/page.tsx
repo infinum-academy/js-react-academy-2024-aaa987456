@@ -5,7 +5,6 @@ export default function Login() {
   return (
     <>
       <AuthRedirect to="/all-shows" condition="loggedIn" />
-
       <LoginForm />
     </>
   );

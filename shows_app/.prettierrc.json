@@ -1,3 +1,6 @@
 {
-    "trailingComma": "none"
+    "trailingComma": "none",
+    "removeParens": false,
+    "bracketSpacing": true,
+    "jsxBracketSameLine": false
 }
