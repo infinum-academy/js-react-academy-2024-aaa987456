@@ -30,8 +30,8 @@ export const ShowsAll = ({ fetcher, url }: ShowListProps) => {
   const showsFetched = data?.shows || [];
 
   return (
-    <Flex justifyContent="flex-end">
-      <SimpleGrid padding="8px" maxWidth="75%" columns={[1, 2, 3, 4]} gap={4}>
+    <Flex>
+      <SimpleGrid padding="8px" columns={[1, 2, 3, 4]} gap={4}>
         {showsFetched.map((show: IShows) => (
           <ShowCard key={show.id} show={show} />
         ))}

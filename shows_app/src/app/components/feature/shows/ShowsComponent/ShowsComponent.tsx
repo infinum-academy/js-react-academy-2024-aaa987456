@@ -23,8 +23,7 @@ export const ShowsComponent = () => {
   const {
     data: reviewsData,
     error: reviewsError,
-    isLoading: reviewsIsLoading,
-    mutate: mutateReviews
+    isLoading: reviewsIsLoading
   } = useSWR<IReview[]>(id ? swrKeys.getReviews(id) : null, fetcher);
 
   if (error || reviewsError) {

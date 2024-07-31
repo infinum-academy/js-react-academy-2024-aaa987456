@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-
-import { Flex } from "@chakra-ui/react";
+import { Flex, Box, Show } from "@chakra-ui/react";
 import { SideBarNavigation } from "../components/shared/SideBar/SidebarNavigation";
+import { MobileSideBar } from "../components/shared/SideBar/MobileSideBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,16 +12,24 @@ export const metadata: Metadata = {
 };
 
 export default function ShowLayout({
-  children,
-  showSidebar
+  children
 }: Readonly<{
   children: React.ReactNode;
-  showSidebar: boolean;
 }>) {
   return (
-    <Flex flex="1" justify="flex-end" margin="20px ">
-      <SideBarNavigation />
-      {children}
-    </Flex>
+    <Box width={{ base: "column", md: "row" }} margin="30px">
+      <Show above="md">
+        <Box>
+          <SideBarNavigation />
+          <Flex flex="1" justifyContent="flex-end">
+            {children}
+          </Flex>
+        </Box>
+      </Show>
+      <Show below="md">
+        <MobileSideBar />
+        <Flex flex="1">{children}</Flex>
+      </Show>
+    </Box>
   );
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { Box } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import { ReviewItem } from "../ReviewItem/ReviewItem";
 import { IReview } from "../../../../typings/reviews";
 
@@ -13,10 +13,10 @@ export const ReviewList = ({ reviews }: IReviewListProps) => {
   }
 
   return (
-    <Box>
+    <Flex direction="column" overflow="hidden">
       {reviews.reviews.map((review: IReview) => (
         <ReviewItem key={review.id} review={review} />
       ))}
-    </Box>
+    </Flex>
   );
 };

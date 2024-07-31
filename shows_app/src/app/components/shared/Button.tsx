@@ -11,8 +11,9 @@ export const FormButton = ({ text, type, isLoading }: ICustomButtonProps) => {
     <Button
       type="submit"
       isLoading={isLoading}
-      color="white.100"
       borderRadius="20px"
+      backgroundColor="white"
+      color="brand.300"
     >
       {text}
     </Button>

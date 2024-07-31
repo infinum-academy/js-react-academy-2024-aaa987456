@@ -17,7 +17,7 @@ export const ShowReviewSection = ({
   return (
     <Box width="100%">
       <ReviewForm showId={showId} />
-      <ReviewList reviews={reviews} showId={showId} />
+      <ReviewList reviews={reviews} />
     </Box>
   );
 };

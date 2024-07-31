@@ -12,6 +12,8 @@ import {
   Heading,
   Img,
   Input,
+  InputGroup,
+  InputLeftElement,
   Link,
   Text
 } from "@chakra-ui/react";
@@ -19,6 +21,7 @@ import { useForm } from "react-hook-form";
 import useSWRMutation from "swr/mutation";
 import { PasswordInput } from "../PasswordInput/PasswordInput";
 import { mutate } from "swr";
+import { EmailIcon, LockIcon } from "@chakra-ui/icons";
 
 export const LoginForm = () => {
   const {
@@ -44,24 +47,42 @@ export const LoginForm = () => {
       alignItems="center"
       gap={30}
       onSubmit={handleSubmit(onSubmit)}
+      backgroundColor="brand.200"
+      borderRadius="20px"
+      padding="30px"
     >
       <Img src="assets/Logo.png"></Img>
 
-      <FormControl isRequired={true}>
-        <Input
-          {...register("email")}
-          placeholder="Email"
-          required
-          type="email"
-          disabled={isSubmitting}
-        />
+      <FormControl variant="floating" isRequired={true}>
+        <FormLabel backgroundColor="brand.300">Email</FormLabel>
+        <InputGroup size="md">
+          <Input
+            {...register("email")}
+            required
+            type="email"
+            disabled={isSubmitting}
+            color="white"
+            borderRadius="30px"
+          />
+
+          <InputLeftElement pointerEvents="none">
+            <EmailIcon color="gray.300" />
+          </InputLeftElement>
+        </InputGroup>
       </FormControl>
       <FormControl isRequired>
         <PasswordInput register={register} isSubmitting={isSubmitting} />
       </FormControl>
       <Flex gap={2}>
-        <Text>Don have an account?</Text>
-        <Text href="/register" as={Link}>
+        <Text textStyle="labelRegular" color="white">
+          Don have an account?
+        </Text>
+        <Text
+          textStyle="labelRegularBold"
+          color="white"
+          href="/register"
+          as={Link}
+        >
           Register
         </Text>
       </Flex>
