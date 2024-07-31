@@ -13,7 +13,7 @@ export const SideBarNavigation = () => {
 
   return (
     <Box
-      width="20vw"
+      width="300px"
       position="fixed"
       left="0"
       top="0"

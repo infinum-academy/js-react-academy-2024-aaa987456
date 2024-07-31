@@ -17,7 +17,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className} style={{ backgroundColor: "#1B004C" }}>
+      <body
+        className={inter.className}
+        style={{ backgroundColor: "var(--chakra-colors-brand-300)" }}
+      >
         <Providers>{children}</Providers>
       </body>
     </html>

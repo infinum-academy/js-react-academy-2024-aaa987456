@@ -9,5 +9,6 @@ export const swrKeys = {
   selected: (id: string) => `${api_url}/shows/${id}`,
   create: `${api_url}/reviews`,
   delete: (id: string) => `${api_url}/reviews/${id}`,
-  getReviews: (id: string) => `${api_url}/shows/${id}/reviews`
+  getReviews: (id: string) => `${api_url}/shows/${id}/reviews`,
+  update: (id: string) => `${api_url}/reviews/${id}`
 };

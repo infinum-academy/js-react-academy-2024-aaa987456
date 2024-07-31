@@ -8,6 +8,7 @@ import { deleteReviewM } from "@/fetchers/mutators";
 import useSWR, { mutate } from "swr";
 import { IShows } from "@/app/typings/shows";
 import { fetcher } from "@/fetchers/fetchers";
+import { ReviewEdit } from "../ReviewEdit/ReviewEdit";
 
 export interface IReviewItemProps {
   review: IReview;
@@ -46,6 +47,7 @@ export const ReviewItem = ({ review, show }: IReviewItemProps) => {
       alignItems="flex-start"
       justifyContent="space-between"
       gap={4}
+      flexWrap="wrap"
     >
       <Flex direction="row" align="flex-start" gap={4}>
         <Img
@@ -77,16 +79,19 @@ export const ReviewItem = ({ review, show }: IReviewItemProps) => {
         </Text>
       </Flex>
       {review.user.id === currentUser?.id && (
-        <Button
-          bg="white"
-          borderRadius="50px"
-          maxW="100px"
-          mt="4"
-          onClick={handleDelete}
-          fontSize="button"
-        >
-          Remove
-        </Button>
+        <>
+          <Button
+            bg="white"
+            borderRadius="50px"
+            maxW="100px"
+            mt="4"
+            onClick={handleDelete}
+            fontSize="button"
+          >
+            Remove
+          </Button>
+          <ReviewEdit review={review} show={show} />
+        </>
       )}
     </Box>
   );

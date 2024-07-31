@@ -23,7 +23,6 @@ describe("ReviewItem", () => {
   const renderComponent = (props: Partial<IReviewItemProps> = {}) => {
     const defaultProps: IReviewItemProps = {
       review: mockReview,
-      onDelete: mockOnDelete,
       ...props
     };
     return render(<ReviewItem {...defaultProps} />);

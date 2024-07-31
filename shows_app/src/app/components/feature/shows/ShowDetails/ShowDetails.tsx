@@ -13,7 +13,7 @@ export const ShowDetails = ({ show, averageRating }: IShowDetailsProps) => {
   const placeholderImage = "https://fakeimg.pl/1000x800/7d3838/909090";
 
   return (
-    <Card borderTopRadius="20px" maxWidth="1053px">
+    <Card borderTopRadius="20px">
       <Image
         src={show.image_url || placeholderImage}
         alt="tv show poster"

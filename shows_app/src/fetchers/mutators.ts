@@ -62,3 +62,16 @@ export async function deleteReviewM(
     throw error;
   }
 }
+
+export async function updateReviewM(
+  url: string,
+  { arg }: { arg: { reviewId: string; comment: string; rating: number } }
+) {
+  try {
+    const response = await fetcher(url, "PATCH", arg);
+    return response;
+  } catch (error) {
+    console.error("Error updating review:", error);
+    throw error;
+  }
+}

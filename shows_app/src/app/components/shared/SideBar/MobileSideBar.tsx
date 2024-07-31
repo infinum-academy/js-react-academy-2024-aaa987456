@@ -29,7 +29,7 @@ export const MobileSideBar = () => {
         <IconButton
           icon={<HamburgerIcon />}
           onClick={onOpen}
-          aria-label={""}
+          aria-label={"Open side navigation"}
           backgroundColor="brand.300"
           color="white"
         />
@@ -47,7 +47,7 @@ export const MobileSideBar = () => {
             <Flex justify="space-between" align="center">
               <IconButton
                 icon={<CloseIcon />}
-                aria-label="Close menu"
+                aria-label="Close side navigation"
                 onClick={onClose}
                 borderRadius="100px"
                 color="white"

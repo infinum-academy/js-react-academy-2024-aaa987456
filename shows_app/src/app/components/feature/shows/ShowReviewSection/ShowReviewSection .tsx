@@ -17,7 +17,7 @@ export const ShowReviewSection = ({
   show
 }: IShowReviewSectionProps) => {
   return (
-    <Box width="100%">
+    <Box>
       <ReviewForm showId={showId} />
       <ReviewList reviews={reviews} show={show} />
     </Box>

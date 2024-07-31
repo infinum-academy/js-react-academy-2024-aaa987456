@@ -13,9 +13,7 @@ export const ShowCard = ({ show }: IShowCard) => {
       href={`/all-shows/${show.id}`}
       borderTopRadius="20px"
       borderBottomRadius="20px"
-      maxHeight="400px"
-      maxWidth="240px"
-      minWidth="150px"
+      minWidth="100px"
     >
       <Image
         minHeight="200px"
