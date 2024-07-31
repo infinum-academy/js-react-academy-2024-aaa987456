@@ -49,7 +49,6 @@ export const ReviewForm = ({ showId }: IReviewFormProps) => {
     };
     try {
       await createReviewTrigger(newReview);
-
       mutate(swrKeys.getReviews(showId));
       reset();
       setRating(0);

@@ -1,20 +1,7 @@
-"use client";
-
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { ShowContext } from "./ShowsContextProvider";
-import {
-  Stepper,
-  Step,
-  StepIndicator,
-  StepStatus,
-  StepIcon,
-  StepNumber,
-  Box,
-  StepTitle,
-  StepDescription,
-  StepSeparator,
-  Button
-} from "@chakra-ui/react";
+import { Flex, Image, Text } from "@chakra-ui/react";
+import { IShows } from "@/app/typings/shows";
 
 export const ShowsStep = () => {
   const {
@@ -25,39 +12,71 @@ export const ShowsStep = () => {
     setFirstRoundWinners,
     secondRoundWinners,
     setSecondRoundWinners,
-    setFinalWinner,
-    selectedShows
+    setFinalWinner
   } = useContext(ShowContext);
 
-  const handleSelection = (selectedShows: any) => {
+  const handleSelection = (selectedShow: IShows) => {
     if (currentStep < 4) {
-      setFirstRoundWinners([...firstRoundWinners, selectedShows]);
+      setFirstRoundWinners([...firstRoundWinners, selectedShow]);
     } else if (currentStep < 6) {
-      setSecondRoundWinners([...secondRoundWinners, selectedShows]);
+      setSecondRoundWinners([...secondRoundWinners, selectedShow]);
     } else {
-      setFinalWinner(selectedShows);
+      setFinalWinner(selectedShow);
     }
     setCurrentStep(currentStep + 1);
   };
 
+  function getShowsForCurrentStep() {
+    if (currentStep < 4) {
+      return Array.isArray(shows)
+        ? shows.slice(currentStep * 2, currentStep * 2 + 2)
+        : [];
+    } else if (currentStep < 6) {
+      return Array.isArray(firstRoundWinners)
+        ? firstRoundWinners.slice(
+            (currentStep - 4) * 2,
+            (currentStep - 4) * 2 + 2
+          )
+        : [];
+    } else {
+      return Array.isArray(secondRoundWinners) ? secondRoundWinners : [];
+    }
+  }
+
+  const currentShows = getShowsForCurrentStep();
+
   return (
-    <Stepper index={currentStep}>
-      {currentShows.map((show, index) => (
-        <Step key={index} onClick={() => handleSelection(show)}>
-          <StepIndicator>
-            <StepStatus
-              complete={<StepIcon />}
-              incomplete={<StepNumber />}
-              active={<StepNumber />}
-            />
-          </StepIndicator>
-          <Box flexShrink="0">
-            <StepTitle>{show.title}</StepTitle>
-            <StepDescription>{show.description}</StepDescription>
-          </Box>
-          <StepSeparator />
-        </Step>
-      ))}
-    </Stepper>
+    <Flex direction="column" alignItems="center">
+      <Text textStyle="textRegular" color="white">
+        Choose your favorite show
+      </Text>
+      <Flex>
+        {currentShows && currentShows.length > 0 ? (
+          currentShows.map((show, index) => (
+            <Flex
+              direction="column"
+              alignItems="center"
+              key={index}
+              onClick={() => handleSelection(show)}
+              margin={4}
+              padding={4}
+            >
+              <Image
+                src={show.image_url}
+                alt={show.title}
+                boxSize="100px"
+                objectFit="cover"
+                borderRadius="100%"
+              />
+              <Text textStyle="textBold" color="white">
+                {show.title}
+              </Text>
+            </Flex>
+          ))
+        ) : (
+          <Text color="white">Loading shows...</Text>
+        )}
+      </Flex>
+    </Flex>
   );
 };

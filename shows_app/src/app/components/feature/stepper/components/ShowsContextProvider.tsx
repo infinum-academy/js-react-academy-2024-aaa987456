@@ -1,5 +1,4 @@
 import React, { createContext, ReactNode, useContext, useState } from "react";
-import { IShowCard } from "../../shows/ShowCard/ShowCard";
 import { IShows } from "@/app/typings/shows";
 import { fetcher } from "@/fetchers/fetchers";
 import { swrKeys } from "@/fetchers/swrKeys";
@@ -8,7 +7,7 @@ import useSWR from "swr";
 interface IShowContext {
   currentStep: number;
   setCurrentStep: (newStep: number) => void;
-  shows?: Array<IShows>;
+  shows: Array<IShows>;
   selectedShows: Array<IShows>;
   setSelectedShows: (newShows: Array<IShows>) => void;
   firstRoundWinners: Array<IShows>;
@@ -28,7 +27,11 @@ interface IShowsContextProviderProps {
 export const ShowsContextProvider = ({
   children
 }: IShowsContextProviderProps) => {
-  const { data: shows } = useSWR<Array<IShows>>(swrKeys.ShowsAllApi, fetcher);
+  const { data } = useSWR<{ shows: Array<IShows> }>(
+    swrKeys.ShowsAllApi,
+    fetcher
+  );
+  const shows = data?.shows || [];
   const [currentStep, setCurrentStep] = useState(0);
   const [selectedShows, setSelectedShows] = useState<Array<IShows>>([]);
   const [firstRoundWinners, setFirstRoundWinners] = useState<Array<IShows>>([]);

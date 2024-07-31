@@ -17,20 +17,10 @@ import {
 } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import NextLink from "next/link";
+import { handleLogout } from "./Logout";
 
 export const MobileSideBar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const router = useRouter();
-
-  const handleLogout = () => {
-    localStorage.removeItem("authToken");
-    router.push("/login");
-  };
-
-  const sidebarWidth = useBreakpointValue({
-    base: "100%",
-    md: "300px"
-  });
 
   return (
     <>
@@ -38,7 +28,6 @@ export const MobileSideBar = () => {
         <IconButton
           icon={<HamburgerIcon />}
           onClick={onOpen}
-          display={{ base: "block", md: "none" }}
           aria-label={""}
           backgroundColor="brand.300"
           color="white"

@@ -34,7 +34,9 @@ export const PasswordInput = ({
 
   return (
     <FormControl variant="floating" isRequired>
-      <FormLabel backgroundColor="brand.300">Password</FormLabel>
+      <FormLabel color="white" backgroundColor="brand.300">
+        Password
+      </FormLabel>
       <InputGroup size="md">
         <Input
           {...register("password", {
@@ -45,10 +47,6 @@ export const PasswordInput = ({
               message: "At least 8 characters"
             }
           })}
-          // ref={(e) => {
-          //   register("password").ref(e);
-          //   inputRef.current = e;
-          // }}
           pr="4.5rem"
           type={showPassword ? "text" : "password"}
           disabled={isSubmitting}

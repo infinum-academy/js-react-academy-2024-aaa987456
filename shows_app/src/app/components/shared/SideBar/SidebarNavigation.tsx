@@ -1,36 +1,14 @@
 "use client";
 
 import React from "react";
-import {
-  Box,
-  Button,
-  Flex,
-  Img,
-  Spacer,
-  Stack,
-  Text,
-  useBreakpointValue,
-  useDisclosure,
-  Drawer,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerHeader,
-  DrawerBody,
-  IconButton
-} from "@chakra-ui/react";
+import { Box, Button, Flex, Img, Spacer, Stack, Text } from "@chakra-ui/react";
 import NextLink from "next/link";
-import { useRouter } from "next/navigation";
+import { handleLogout } from "./Logout";
 
 export const SideBarNavigation = () => {
-  const router = useRouter();
-  const handleLogout = () => {
-    localStorage.removeItem("authToken");
-    router.push("/login");
-  };
-
   return (
     <Box
-      maxWidth="500px"
+      width="20vw"
       position="fixed"
       left="0"
       top="0"
@@ -38,7 +16,7 @@ export const SideBarNavigation = () => {
       backgroundColor="brand.300"
       color="white"
       padding="4"
-      display={{ base: "none", md: "flex" }}
+      display="flex"
       flexDirection="column"
     >
       <Img src="../assets/Logo.png" maxWidth="200px" paddingBottom="55px" />

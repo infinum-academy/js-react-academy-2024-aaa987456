@@ -6,9 +6,9 @@ import { ShowsStep } from "./ShowsStep";
 export const ShowsStepper = () => {
   const { currentStep } = useContext(ShowContext);
 
-  if (currentStep) {
+  if (currentStep <= 6) {
     return <ShowsStep />;
   } else {
-    return <ShowsStep />;
+    return <ShowsFinal />;
   }
 };

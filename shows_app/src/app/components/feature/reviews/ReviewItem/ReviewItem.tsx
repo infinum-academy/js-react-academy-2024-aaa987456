@@ -1,17 +1,19 @@
 import React from "react";
-import { Box, Flex, Text, Img, Button, Icon, Stack } from "@chakra-ui/react";
+import { Box, Flex, Text, Img, Button, Icon } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
 import { IReview } from "../../../../typings/reviews";
 import useSWRMutation from "swr/mutation";
 import { swrKeys } from "@/fetchers/swrKeys";
 import { deleteReviewM } from "@/fetchers/mutators";
 import { mutate } from "swr";
+import { IShows } from "@/app/typings/shows";
 
 export interface IReviewItemProps {
   review: IReview;
+  show: IShows;
 }
 
-export const ReviewItem = ({ review }: IReviewItemProps) => {
+export const ReviewItem = ({ review, show }: IReviewItemProps) => {
   const { trigger: deleteReviewTrigger } = useSWRMutation(
     swrKeys.delete(review.id),
     deleteReviewM
@@ -23,7 +25,7 @@ export const ReviewItem = ({ review }: IReviewItemProps) => {
         reviewId: review.id,
         userId: review.user.id
       });
-      mutate(swrKeys.getReviews);
+      mutate(swrKeys.getReviews(show.id));
     } catch (error) {
       console.error("Failed to delete review:", error);
     }

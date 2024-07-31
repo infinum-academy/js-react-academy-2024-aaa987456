@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
-import { Flex } from "@chakra-ui/react";
+import { Container, Flex } from "@chakra-ui/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,7 +25,13 @@ export default function AuthLayout({
       alignItems="center"
       overflow="hidden"
     >
-      {children}
+      <Container
+        backgroundColor="brand.300"
+        justifyContent="center"
+        maxWidth="450px"
+      >
+        {children}
+      </Container>
     </Flex>
   );
 }

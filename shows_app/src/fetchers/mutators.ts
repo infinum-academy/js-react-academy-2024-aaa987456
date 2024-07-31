@@ -1,7 +1,6 @@
 import { MutatorArgs } from "@/app/typings/auths";
-import { IReview, IReviewContent } from "@/app/typings/reviews";
+import { IReview } from "@/app/typings/reviews";
 import { fetcher } from "./fetchers";
-import { swrKeys } from "./swrKeys";
 
 export async function mutator<T>(
   url: string,

@@ -21,7 +21,7 @@ export default function ShowLayout({
       <Show above="md">
         <Box>
           <SideBarNavigation />
-          <Flex flex="1" justifyContent="flex-end">
+          <Flex flex="1" justifyContent="flex-end" marginLeft="20vw">
             {children}
           </Flex>
         </Box>
