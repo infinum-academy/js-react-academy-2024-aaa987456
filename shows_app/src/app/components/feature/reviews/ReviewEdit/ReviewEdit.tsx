@@ -48,7 +48,7 @@ export const ReviewEdit = ({ review, show }: IReviewItemProps) => {
     }
   };
 
-  const handleRatingChange = (rating: number) => {
+  const handleReviewChange = (rating: number) => {
     setRating(rating);
   };
 
@@ -77,7 +77,7 @@ export const ReviewEdit = ({ review, show }: IReviewItemProps) => {
                 placeholder="Edit comment"
               />
               <Flex>
-                <StarRating rating={rating} onChange={handleRatingChange} />
+                <StarRating rating={rating} onChange={handleReviewChange} />
               </Flex>
             </Flex>
           </ModalBody>
