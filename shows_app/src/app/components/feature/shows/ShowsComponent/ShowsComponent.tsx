@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Box, Flex, Spinner, Text } from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import useSWR from "swr";
 import { ShowDetails } from "../ShowDetails/ShowDetails";
 import { ShowReviewSection } from "../ShowReviewSection/ShowReviewSection ";
@@ -10,6 +10,7 @@ import { IReview } from "../../../../typings/reviews";
 import { fetcher } from "@/fetchers/fetchers";
 import { swrKeys } from "@/fetchers/swrKeys";
 import { useParams } from "next/navigation";
+import { SpinnerElement } from "@/app/components/shared/SpinnerElement";
 
 export const ShowsComponent = () => {
   const params = useParams();
@@ -35,11 +36,7 @@ export const ShowsComponent = () => {
   }
 
   if (isLoading || reviewsIsLoading || !data) {
-    return (
-      <Box>
-        <Spinner />
-      </Box>
-    );
+    return <SpinnerElement />;
   }
 
   return (

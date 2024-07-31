@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Flex, Image, Text } from "@chakra-ui/react";
+import { Flex, Image, Text } from "@chakra-ui/react";
 import { useShowContext } from "./ShowsContextProvider";
 
 export const ShowsFinal = () => {

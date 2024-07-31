@@ -10,7 +10,7 @@ import {
   Text
 } from "@chakra-ui/react";
 import { StarRating } from "../../reviews/StarRating/StarRating";
-import { IReview, IReviewContent } from "../../../../typings/reviews";
+import { IReview } from "../../../../typings/reviews";
 import { useForm } from "react-hook-form";
 import { createReviewM } from "@/fetchers/mutators";
 import { swrKeys } from "@/fetchers/swrKeys";
@@ -96,6 +96,7 @@ export const ReviewForm = ({ showId }: IReviewFormProps) => {
                 <StarRating rating={rating} onChange={handleRatingChange} />
               </Flex>
               <Button
+                isDisabled={isSubmitting}
                 type="submit"
                 backgroundColor="white"
                 borderRadius="50px"

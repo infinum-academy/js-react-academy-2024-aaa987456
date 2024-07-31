@@ -36,7 +36,6 @@ export const RegisterForm = () => {
   const { trigger } = useSWRMutation(swrKeys.register, mutator);
 
   const onSubmit = async (data: IRegisterArgs) => {
-    console.log(data);
     await trigger(data);
     setIsRegistered(true);
   };

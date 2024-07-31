@@ -1,6 +1,6 @@
 import { IShows } from "../../../../typings/shows";
 import { StarIcon } from "@chakra-ui/icons";
-import { Card, CardBody, Image, Text, Box, Icon, Flex } from "@chakra-ui/react";
+import { Card, CardBody, Image, Text, Icon, Flex } from "@chakra-ui/react";
 import NextLink from "next/link";
 
 export interface IShowCard {
@@ -13,9 +13,7 @@ export const ShowCard = ({ show }: IShowCard) => {
       href={`/all-shows/${show.id}`}
       borderTopRadius="20px"
       borderBottomRadius="20px"
-      maxHeight="400px"
-      maxWidth="240px"
-      minWidth="150px"
+      minWidth="100px"
     >
       <Image
         minHeight="200px"

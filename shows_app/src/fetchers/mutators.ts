@@ -33,7 +33,6 @@ export async function mutator<T>(
     localStorage.setItem("client", client || "");
     localStorage.setItem("authToken", accessToken);
     localStorage.setItem("uid", uid || "");
-    console.log("Token saved:", accessToken);
   } else {
     throw new Error("No access token received.");
   }
@@ -60,6 +59,19 @@ export async function deleteReviewM(
     return response;
   } catch (error) {
     console.error("Error deleting review:", error);
+    throw error;
+  }
+}
+
+export async function updateReviewM(
+  url: string,
+  { arg }: { arg: { reviewId: string; comment: string; rating: number } }
+) {
+  try {
+    const response = await fetcher(url, "PATCH", arg);
+    return response;
+  } catch (error) {
+    console.error("Error updating review:", error);
     throw error;
   }
 }

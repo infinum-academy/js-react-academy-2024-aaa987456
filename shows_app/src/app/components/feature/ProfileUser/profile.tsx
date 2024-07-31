@@ -1,11 +1,12 @@
 "use client";
 
-import { Box, Flex, Text, Img, Spinner, Button } from "@chakra-ui/react";
+import { Box, Flex, Text, Img, Button } from "@chakra-ui/react";
 import useSWR from "swr";
 import { fetcher } from "@/fetchers/fetchers";
 import { IUser } from "@/app/typings/reviews";
 import { swrKeys } from "@/fetchers/swrKeys";
 import { StepperFavorite } from "../stepper/StepperFavorite";
+import { SpinnerElement } from "../../shared/SpinnerElement";
 
 export const ProfileUser = () => {
   const { data, error, isLoading } = useSWR<{ user: IUser }>(
@@ -19,12 +20,7 @@ export const ProfileUser = () => {
         <Text>Failed to load user data</Text>
       </Box>
     );
-  if (isLoading)
-    return (
-      <Box>
-        <Spinner />
-      </Box>
-    );
+  if (isLoading) return <SpinnerElement />;
 
   const user = data?.user;
 

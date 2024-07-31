@@ -18,16 +18,11 @@ export default function ProfileLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <Box width={{ base: "column", md: "row" }} marginRight="20vw">
+    <Box width={{ base: "column", md: "row" }} margin="30px">
       <Show above="md">
         <Box>
           <SideBarNavigation />
-          <Flex
-            flex="1"
-            justifyContent="center"
-            marginLeft="20vw"
-            overflow="hidden"
-          >
+          <Flex justifyContent="center" margin="100px 0 0 300px">
             {children}
           </Flex>
         </Box>

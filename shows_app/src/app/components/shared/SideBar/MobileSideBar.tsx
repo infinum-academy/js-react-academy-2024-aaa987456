@@ -3,7 +3,6 @@ import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import {
   Text,
   useDisclosure,
-  useBreakpointValue,
   IconButton,
   Drawer,
   DrawerOverlay,
@@ -12,14 +11,16 @@ import {
   Flex,
   Img,
   DrawerBody,
-  Stack,
-  Button
+  Stack
 } from "@chakra-ui/react";
-import { useRouter } from "next/navigation";
 import NextLink from "next/link";
-import { handleLogout } from "./Logout";
+import { LogoutButton } from "./LogoutButton";
+import { usePathname } from "next/navigation";
 
 export const MobileSideBar = () => {
+  const pathname = usePathname();
+
+  const isActive = (path: string) => pathname === path;
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -28,7 +29,7 @@ export const MobileSideBar = () => {
         <IconButton
           icon={<HamburgerIcon />}
           onClick={onOpen}
-          aria-label={""}
+          aria-label={"Open side navigation"}
           backgroundColor="brand.300"
           color="white"
         />
@@ -46,7 +47,7 @@ export const MobileSideBar = () => {
             <Flex justify="space-between" align="center">
               <IconButton
                 icon={<CloseIcon />}
-                aria-label="Close menu"
+                aria-label="Close side navigation"
                 onClick={onClose}
                 borderRadius="100px"
                 color="white"
@@ -58,30 +59,35 @@ export const MobileSideBar = () => {
           <DrawerBody backgroundColor="brand.200">
             <Stack spacing="4">
               <NextLink href="/all-shows">
-                <Text fontSize="headline" onClick={onClose} color="white">
+                <Text
+                  fontSize="headline"
+                  color={isActive("/all-shows") ? "brand.400" : "white"}
+                  onClick={onClose}
+                >
                   All shows
                 </Text>
               </NextLink>
               <NextLink href="/all-shows/top-rated">
-                <Text fontSize="headline" onClick={onClose} color="white">
+                <Text
+                  fontSize="headline"
+                  color={
+                    isActive("/all-shows/top-rated") ? "brand.400" : "white"
+                  }
+                  onClick={onClose}
+                >
                   Top rated
                 </Text>
               </NextLink>
               <NextLink href="/profile">
-                <Text fontSize="headline" onClick={onClose} color="white">
+                <Text
+                  fontSize="headline"
+                  color={isActive("/profile") ? "brand.400" : "white"}
+                  onClick={onClose}
+                >
                   My profile
                 </Text>
               </NextLink>
-              <Button
-                onClick={handleLogout}
-                backgroundColor="brand.200"
-                color="white"
-                width="full"
-              >
-                <Text fontSize="titleRegular" color="white">
-                  Log Out
-                </Text>
-              </Button>
+              <LogoutButton />
             </Stack>
           </DrawerBody>
         </DrawerContent>
